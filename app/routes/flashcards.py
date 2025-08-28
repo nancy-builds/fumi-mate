@@ -1,11 +1,12 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from config import Config
+from flask import Blueprint, render_template, redirect, url_for, flash
+from flask_login import login_user, logout_user, login_required
+from ..forms.forms import FlashcardForm
+from ..models import Flashcard
+from ..extensions import db
+from flask_login import login_required, current_user
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy()
 
+bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 topics = {
     "japan": {
@@ -46,16 +47,13 @@ topics = {
     }
 }
 
-
-@app.route("/")
-def home():
-    return render_template("index.html", bg_url='images/bg.jpg')
-
-@app.route('/flashcards')
+@bp.route('/flashcards')
+@login_required
 def flashcards():
     return render_template("flashcards/flashcards.html", topics_data=topics)
 
-@app.route('/flashcards/<topic>')
+@bp.route('/flashcards/<topic>')
+@login_required
 def deck(topic):
     return render_template("flashcards/deck.html",
                                data=topics[topic])
@@ -63,23 +61,23 @@ def deck(topic):
 
 
 
+@bp.route("/")
+@login_required
+def index():
+    if current_user.is_authenticated:
+        flashcards = Flashcard.query.filter_by(user_id=current_user.id).all()
+    else:
+        flashcards = []
+    return render_template("index.html", flashcards=flashcards)
 
-
-
-
-
-@app.route('/memories')
-def memories():
-    return render_template("memories.html")
-
-@app.route('/games')
-def games():
-    return render_template("games.html")
-
-@app.route('/profile')
-def profile():
-    return render_template("profile.html")
-
-if __name__ == "__main__":
-    app.run()
+@bp.route("/add", methods=["GET", "POST"])
+@login_required
+def add_flashcard():
+    form = FlashcardForm()
+    if form.validate_on_submit():
+        card = Flashcard(front=form.front.data, back=form.back.data, user_id=current_user.id)
+        db.session.add(card)
+        db.session.commit()
+        return redirect(url_for("main.index"))
+    return render_template("add.html", form=form)
 

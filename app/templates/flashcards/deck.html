@@ -11,6 +11,19 @@
     <div class="card">Card 3</div>
   </div>
 
+<h2>Your Flashcards</h2>
+<ul>
+    {% for card in flashcards %}
+        <li><b>{{ card.front }}</b> → {{ card.back }}</li>
+    {% else %}
+        <li>No flashcards yet.</li>
+    {% endfor %}
+</ul>
+
+
+
+
+
     <ul class="actions">
         <li><a href="#" class="button">Forget</a></li>
         <li><a href="#" class="button">Undo Swiping</a></li>
