@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "username": "nancy",
+      "password": "nancy",
+      "sets": [
+        {
+          "name": "People & Family",
+          "flashcards": [
+            { "front": "人間", "back": "con người", "status": "forget" },
+            { "front": "大人", "back": "người lớn", "status": "forget" },
+            { "front": "子供", "back": "trẻ em", "status": "forget" },
+            { "front": "男の人", "back": "đàn ông", "status": "forget" },
+            { "front": "女の人", "back": "phụ nữ", "status": "forget" },
+            { "front": "友達", "back": "bạn bè", "status": "forget" },
+            { "front": "父親", "back": "cha", "status": "forget" },
+            { "front": "母親", "back": "mẹ", "status": "forget" },
+            { "front": "兄弟", "back": "anh em", "status": "forget" },
+            { "front": "姉妹", "back": "chị em", "status": "forget" },
+            { "front": "家族", "back": "gia đình", "status": "forget" },
+            { "front": "夫婦", "back": "vợ chồng", "status": "forget" },
+            { "front": "主人", "back": "chồng (chủ nhà)", "status": "forget" },
+            { "front": "奥さん", "back": "vợ", "status": "forget" },
+            { "front": "名前", "back": "tên", "status": "forget" },
+            { "front": "氏名", "back": "họ tên", "status": "forget" },
+            { "front": "学生", "back": "học sinh, sinh viên", "status": "forget" },
+            { "front": "先生", "back": "thầy cô", "status": "forget" },
+            { "front": "校長", "back": "hiệu trưởng", "status": "forget" },
+            { "front": "内科", "back": "khoa nội (trong bệnh viện)", "status": "forget" },
+            { "front": "外国人", "back": "người nước ngoài", "status": "forget" },
+            { "front": "親友", "back": "bạn thân", "status": "forget" },
+            { "front": "主婦", "back": "nội trợ", "status": "forget" },
+            { "front": "友人", "back": "bạn hữu", "status": "forget" },
+            { "front": "家内", "back": "vợ (cách gọi trong gia đình)", "status": "forget" }
+          ]
+        },
+        {
+          "name": "Time & Nature",
+          "flashcards": [
+            { "front": "今日", "back": "hôm nay", "status": "forget" },
+            { "front": "明日", "back": "ngày mai", "status": "forget" },
+            { "front": "昨日", "back": "hôm qua", "status": "forget" },
+            { "front": "一日中", "back": "suốt cả ngày", "status": "forget" },
+            { "front": "毎日", "back": "mỗi ngày", "status": "forget" },
+            { "front": "毎週", "back": "mỗi tuần", "status": "forget" },
+            { "front": "毎年", "back": "mỗi năm", "status": "forget" },
+            { "front": "先週", "back": "tuần trước", "status": "forget" },
+            { "front": "来週", "back": "tuần sau", "status": "forget" },
+            { "front": "今月", "back": "tháng này", "status": "forget" },
+            { "front": "来月", "back": "tháng sau", "status": "forget" },
+            { "front": "去年", "back": "năm ngoái", "status": "forget" },
+            { "front": "来年", "back": "năm sau", "status": "forget" },
+            { "front": "春休み", "back": "kỳ nghỉ xuân", "status": "forget" },
+            { "front": "夏休み", "back": "kỳ nghỉ hè", "status": "forget" },
+            { "front": "秋風", "back": "gió thu", "status": "forget" },
+            { "front": "冬休み", "back": "kỳ nghỉ đông", "status": "forget" },
+            { "front": "空気", "back": "không khí", "status": "forget" },
+            { "front": "天気", "back": "thời tiết", "status": "forget" },
+            { "front": "雨水", "back": "nước mưa", "status": "forget" },
+            { "front": "大雪", "back": "tuyết rơi nhiều", "status": "forget" },
+            { "front": "台風", "back": "bão", "status": "forget" },
+            { "front": "星空", "back": "bầu trời đầy sao", "status": "forget" },
+            { "front": "日曜日", "back": "Chủ nhật", "status": "forget" },
+            { "front": "月曜日", "back": "Thứ hai", "status": "forget" }
+          ]
+        },
+        {
+          "name": "Daily Life",
+          "flashcards": [
+            { "front": "食事", "back": "bữa ăn", "status": "forget" },
+            { "front": "朝食", "back": "bữa sáng", "status": "forget" },
+            { "front": "昼食", "back": "bữa trưa", "status": "forget" },
+            { "front": "夕食", "back": "bữa tối", "status": "forget" },
+            { "front": "飲み物", "back": "đồ uống", "status": "forget" },
+            { "front": "買い物", "back": "mua sắm", "status": "forget" },
+            { "front": "行き先", "back": "điểm đến", "status": "forget" },
+            { "front": "出発", "back": "xuất phát", "status": "forget" },
+            { "front": "入学", "back": "nhập học", "status": "forget" },
+            { "front": "見学", "back": "tham quan, dự giờ", "status": "forget" },
+            { "front": "新聞", "back": "báo chí", "status": "forget" },
+            { "front": "読書", "back": "việc đọc sách", "status": "forget" },
+            { "front": "手紙", "back": "bức thư", "status": "forget" },
+            { "front": "会話", "back": "hội thoại", "status": "forget" },
+            { "front": "思い出", "back": "kỷ niệm", "status": "forget" },
+            { "front": "休日", "back": "ngày nghỉ", "status": "forget" },
+            { "front": "起床", "back": "thức dậy", "status": "forget" },
+            { "front": "就寝", "back": "đi ngủ", "status": "forget" },
+            { "front": "住所", "back": "địa chỉ", "status": "forget" },
+            { "front": "労働", "back": "lao động", "status": "forget" },
+            { "front": "使用", "back": "sử dụng", "status": "forget" },
+            { "front": "作業", "back": "công việc, thao tác", "status": "forget" },
+            { "front": "開始", "back": "bắt đầu", "status": "forget" },
+            { "front": "閉店", "back": "đóng cửa (tiệm)", "status": "forget" },
+            { "front": "教室", "back": "lớp học", "status": "forget" }
+          ]
+        },
+        {
+          "name": "Places & Transport",
+          "flashcards": [
+            { "front": "山道", "back": "đường núi", "status": "forget" },
+            { "front": "川辺", "back": "bờ sông", "status": "forget" },
+            { "front": "海外", "back": "nước ngoài", "status": "forget" },
+            { "front": "花火", "back": "pháo hoa", "status": "forget" },
+            { "front": "森林", "back": "rừng rậm", "status": "forget" },
+            { "front": "道路", "back": "con đường", "status": "forget" },
+            { "front": "自動車", "back": "ô tô", "status": "forget" },
+            { "front": "駅前", "back": "trước ga", "status": "forget" },
+            { "front": "店員", "back": "nhân viên cửa hàng", "status": "forget" },
+            { "front": "会社", "back": "công ty", "status": "forget" },
+            { "front": "社長", "back": "giám đốc", "status": "forget" },
+            { "front": "国際", "back": "quốc tế", "status": "forget" },
+            { "front": "首都", "back": "thủ đô", "status": "forget" },
+            { "front": "市場", "back": "chợ", "status": "forget" },
+            { "front": "町中", "back": "trong thị trấn", "status": "forget" },
+            { "front": "村人", "back": "dân làng", "status": "forget" },
+            { "front": "東京", "back": "Tokyo", "status": "forget" },
+            { "front": "銀行", "back": "ngân hàng", "status": "forget" },
+            { "front": "病院", "back": "bệnh viện", "status": "forget" },
+            { "front": "大学", "back": "đại học", "status": "forget" },
+            { "front": "図書館", "back": "thư viện", "status": "forget" },
+            { "front": "公園", "back": "công viên", "status": "forget" },
+            { "front": "映画館", "back": "rạp chiếu phim", "status": "forget" },
+            { "front": "動物園", "back": "sở thú", "status": "forget" },
+            { "front": "博物館", "back": "viện bảo tàng", "status": "forget" }
+          ]
+        }
+      ]
+    }
+  ]
+}

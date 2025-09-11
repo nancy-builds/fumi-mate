@@ -1,0 +1,19 @@
+{% extends "flashcards/base.html" %}
+
+
+{% block title %}Flashcards{% endblock %}
+{% block topic %}Flashcards{% endblock %}
+{% block description %}desscriptionnnnnnnnnnnnnnnnnnnnnnnnnn????{% endblock %}
+
+
+{% block content %}
+<ul class="actions flashcards">
+  {% for s in sets %}
+    <li>
+      <a href="{{ url_for('flashcards.flashcards', set_name=s.name) }}" class="button">
+        {{ s.name }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

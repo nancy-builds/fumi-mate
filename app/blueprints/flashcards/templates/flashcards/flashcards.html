@@ -1,0 +1,80 @@
+{% extends "flashcards/base.html" %}
+{% block title %}Japanese{% endblock %}
+{% block topic %}Japanese{% endblock %}
+{% block description %}desscription learn japanese for peace{% endblock %}
+
+
+{% block content %}
+  <div class="cards">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+  </div>
+
+
+<ul>
+    {% for card in flashcards %}
+        <li><b>{{ card.front }}</b> → {{ card.back }}</li>
+    {% else %}
+        <li>No flashcards yet.</li>
+    {% endfor %}
+</ul>
+
+    <ul class="actions">
+        <li><a href="#" class="button">Forget</a></li>
+        <li><a href="#" class="button">Undo Swiping</a></li>
+        <li><a href="#" class="button">Know</a></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+<div id="cards">
+  {% for c in cards %}
+    <div class="card" data-id="{{ c.id }}">
+      <h3>{{ c.question }}</h3>
+      <p>{{ c.answer }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<button onclick="swipe('know')">Swipe Right (Know)</button>
+<button onclick="swipe('forget')">Swipe Left (Forget)</button>
+
+<script>
+let currentCardIndex = 0;
+const cards = document.querySelectorAll(".card");
+
+function showCard() {
+  cards.forEach((c, i) => c.style.display = (i === currentCardIndex ? "block" : "none"));
+}
+showCard();
+
+function swipe(status) {
+  const card = cards[currentCardIndex];
+  const cardId = card.getAttribute("data-id");
+
+  fetch("{{ url_for('flashcards.update_status') }}", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({card_id: cardId, status: status})
+  });
+
+  currentCardIndex++;
+  if (currentCardIndex < cards.length) {
+    showCard();
+  } else {
+    alert("Done! Try retry mode for forgotten cards.");
+  }
+}
+</script>
+
+
+
+
+{% endblock %}
