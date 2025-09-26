@@ -12,9 +12,11 @@ def seed_db():
     """Seed the database from JSON file."""
     with app.app_context():
 
-        # Reset database schema
-        db.drop_all()
-        db.create_all()
+        # Clear old data
+        Flashcard.query.delete()
+        FlashcardSet.query.delete()
+        db.session.commit()
+
         # Load JSON
         with open("data/flashcards.json", "r", encoding="utf-8") as f:
             data = json.load(f)

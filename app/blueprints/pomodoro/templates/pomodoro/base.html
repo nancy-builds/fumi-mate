@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>{% block title %}Flashcards{% endblock %}</title>
+		<title>{% block title %}Pomodoro{% endblock %}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
-		<link rel="stylesheet" href="{{ url_for('flashcards.static', filename='flashcards.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('pomodoro.static', filename='pomodoro.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
        <style>
@@ -18,14 +18,7 @@
         <!-- Wrapper -->
         <div id="wrapper">
             <article class="container">
-                <header class="flashcards-header" >
-                    <h1 class="flashcards-topic">{% block topic %}{% endblock %}</h1>
-                    <a href="{{ url_for(current_page) }}">
-                        <i class="bi bi-x-lg"></i>
-                    </a>
-                </header>
-                <p class="description">{% block description %}{% endblock %}</p>
-               {% block content %}{% endblock %}
+                {% block content %}{% endblock %}
             </article>
         </div>
 
@@ -38,6 +31,5 @@
 		<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
 		<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
-        <script src="{{ url_for('flashcards.static', filename='script.js') }}" defer></script>
 	</body>
 </html>

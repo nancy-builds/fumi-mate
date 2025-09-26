@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify
 from flask_login import login_required, current_user
 from . import bp
-@bp.route("/profile")
+@bp.route("/")
 @login_required
-def profile():
-    return render_template("profile/profile.html", bg_url='images/bg.jpg')
+def index():
+    return render_template("profile/index.html", bg_url='images/bg.jpg')

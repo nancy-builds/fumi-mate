@@ -14,6 +14,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class FlashcardSet(db.Model):
+    __tablename__ = 'flashcard_set'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -23,5 +24,5 @@ class Flashcard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     front = db.Column(db.String(200), nullable=False)
     back = db.Column(db.String(200), nullable=False)
-    status = db.Column(db.String(10))  # forget / know / forget
+    status = db.Column(db.String(10))  # forget / know
     set_id = db.Column(db.Integer, db.ForeignKey("flashcard_set.id"), nullable=False)

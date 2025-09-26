@@ -16,8 +16,8 @@
                 <ul>
                     {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('flashcards.index') }}">Flashcards</a></li>
-                        <li><a href="{{ url_for('memories.memories') }}">Memories</a></li>
-                        <li><a href="{{ url_for('profile.profile') }}">Profile</a></li>
+                        <li><a href="{{ url_for('pomodoro.index') }}">Pomodoro</a></li>
+                        <li><a href="{{ url_for('profile.index') }}">Profile</a></li>
                         <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}">Login</a></li>

@@ -1,0 +1,41 @@
+{% extends "pomodoro/base.html" %}
+
+{% block title %}Pomodoro{% endblock %}
+{% block topic %}Pomodoro{% endblock %}
+
+{% block content %}
+  <header>
+    <h1>Pomodoro Timer</h1>
+    <p>Stay focused, track study sessions, and earn points!</p>
+  </header>
+
+  <main>
+    <!-- Timer -->
+    <section id="timer-section">
+      <h2>Timer</h2>
+      <div id="timer">25:00</div>
+      <button id="start-btn">Start</button>
+      <button id="pause-btn">Pause</button>
+      <button id="reset-btn">Reset</button>
+    </section>
+
+    <!-- Tasks -->
+    <section id="tasks-section">
+      <h2>Task List</h2>
+      <ul id="task-list">
+        <!-- tasks will go here -->
+      </ul>
+      <input type="text" id="new-task-input" placeholder="New task...">
+      <button id="add-task-btn">Add Task</button>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats-section">
+      <h2>Study Stats</h2>
+      <p>Total sessions: <span id="total-sessions">0</span></p>
+      <p>Total time studied: <span id="total-time">0 mins</span></p>
+      <p>Points: <span id="points">0</span></p>
+    </section>
+  </main>
+
+{% endblock %}

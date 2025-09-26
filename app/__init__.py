@@ -4,7 +4,7 @@ from app.extensions import db, migrate, login_manager
 from .blueprints.main import bp as main_bp
 from .blueprints.auth import bp as auth_bp
 from .blueprints.flashcards import bp as flashcards_bp
-from .blueprints.memories import bp as memories_bp
+from .blueprints.pomodoro import bp as memories_bp
 from .blueprints.profile import bp as profile_bp
 from .models import User
 

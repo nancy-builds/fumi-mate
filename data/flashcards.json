@@ -5,7 +5,8 @@
       "password": "nancy",
       "sets": [
         {
-          "name": "People & Family",
+          "name": "People",
+          "description": "Discover words related to family, friends, and relationships. Build the vocabulary you need to talk about people in daily life.",
           "flashcards": [
             { "front": "人間", "back": "con người", "status": "forget" },
             { "front": "大人", "back": "người lớn", "status": "forget" },
@@ -35,7 +36,8 @@
           ]
         },
         {
-          "name": "Time & Nature",
+          "name": "Time",
+          "description": "Master how to express time in Japanese, from days of the week to months and key time expressions.",
           "flashcards": [
             { "front": "今日", "back": "hôm nay", "status": "forget" },
             { "front": "明日", "back": "ngày mai", "status": "forget" },
@@ -66,6 +68,7 @@
         },
         {
           "name": "Daily Life",
+          "description": "Learn useful vocabulary for everyday activities like eating, studying, working, and relaxing.",
           "flashcards": [
             { "front": "食事", "back": "bữa ăn", "status": "forget" },
             { "front": "朝食", "back": "bữa sáng", "status": "forget" },
@@ -95,7 +98,8 @@
           ]
         },
         {
-          "name": "Places & Transport",
+          "name": "Places",
+          "description": "Explore words for common locations in Japanese, from home and school to shops and cities.",
           "flashcards": [
             { "front": "山道", "back": "đường núi", "status": "forget" },
             { "front": "川辺", "back": "bờ sông", "status": "forget" },

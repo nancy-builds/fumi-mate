@@ -1031,6 +1031,7 @@ input, select, textarea {
 		white-space: nowrap;
 	}
 
+
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
