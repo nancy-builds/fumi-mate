@@ -3,10 +3,10 @@ import os
 from app.extensions import db, migrate, login_manager
 from .blueprints.main import bp as main_bp
 from .blueprints.auth import bp as auth_bp
-from .blueprints.flashcards import bp as flashcards_bp
-from .blueprints.pomodoro import bp as memories_bp
-from .blueprints.profile import bp as profile_bp
-from .models import User
+from .blueprints.teacher import bp as teacher_bp
+from .blueprints.student import bp as student_bp
+from app.models.user import User
+
 
 def create_app(config_class="app.config.Config"):
     app = Flask(__name__)
@@ -19,10 +19,9 @@ def create_app(config_class="app.config.Config"):
     login_manager.login_view = "auth.login"
 
     # Blueprints
-    app.register_blueprint(auth_bp, url_prefix="/auth")
-    app.register_blueprint(flashcards_bp, url_prefix="/flashcards")
-    app.register_blueprint(memories_bp, url_prefix="/memories")
-    app.register_blueprint(profile_bp, url_prefix="/profile")
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(teacher_bp, url_prefix="/teacher")
+    app.register_blueprint(student_bp, url_prefix="/student")
     app.register_blueprint(main_bp)
 
     # ép môi trường development
@@ -30,3 +29,6 @@ def create_app(config_class="app.config.Config"):
     app.debug = True
 
     return app
+
+app = create_app()
+

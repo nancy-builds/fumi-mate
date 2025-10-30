@@ -1,24 +1,34 @@
 {% extends "base.html" %}
+
+{% block title %}文メイト{% endblock %}
+
 {% block content %}
-<h2>Register</h2>
-<!-- Hiển thị thông báo -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-<form method="post">
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username(size=20) }}<br>
-    {{ form.password.label }} {{ form.password(size=20) }}<br>
-    {{ form.submit() }}
-</form>
+<section>
+<div class="hero-section">
+    <div class="hero-content">
+    <h2 class="major">Register</h2>
+    <section>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.username.label }} {{ form.username(size=20) }}<br>
+            {{ form.password.label }} {{ form.password(size=20) }}<br>
+            {{ form.confirm.label }} {{ form.confirm() }}<br>
+            {{ form.role.label }} {{ form.role() }}<br>
+            {{ form.submit() }}
+        </form>
+        <!-- Hiển thị thông báo -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <p>Already have an account? Go to <a href="{{ url_for('auth.login') }}">Login</a></p>
 
-<p>Already have an account?</p>
-<a class="button" href="{{ url_for('auth.login') }}">Login</a>
-
-{% endblock %}
+    </div>
+    </div>
+</section>
+        {% endblock %}
