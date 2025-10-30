@@ -1,4 +1,4 @@
 # Global constants for reuse
-USER_ROLES = ["admin", "editor", "viewer"]
+USER_ROLES = ["student", "teacher"]
 SITE_NAME = "Nancy Builds"
-ITEMS_PER_PAGE = 10
+APP_NAME = "文メイト"

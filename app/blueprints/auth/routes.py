@@ -17,6 +17,7 @@ def register():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
+        role = form.role.data
 
         # Database logic giữ nguyên
         if User.query.filter_by(username=username).first():
@@ -24,7 +25,9 @@ def register():
             return redirect(url_for('auth.register'))
 
         user = User(username=username,
-                    password_hash=generate_password_hash(password))
+                    password_hash=generate_password_hash(password),
+                    role=role)
+
         db.session.add(user)
         db.session.commit()
         flash("Registered successfully. Please login.")
@@ -40,16 +43,22 @@ def login():
         username = form.username.data
         password = form.password.data
 
-        # Database logic giữ nguyên
+        # Look for the user in the database
         user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password_hash, password):
-            login_user(user)
-            return redirect(url_for('main.home'))
-        else:
-            flash("Invalid credentials")
+
+        # If user doesn't exist or password is incorrect
+        if user is None or not check_password_hash(user.password_hash, password):
+            flash("Invalid username or password. Please try again.", "error")
             return redirect(url_for('auth.login'))
 
+        # If login successful
+        login_user(user)
+        flash("Login successful!", "success")
+        return redirect(url_for('main.home'))
+
     return render_template('auth/login.html', form=form)
+
+
 @bp.route('/logout')
 @login_required
 def logout():

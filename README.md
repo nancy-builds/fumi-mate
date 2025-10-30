@@ -1,55 +1,11 @@
-````markdown
-# 🕵️ The Dicktective
-
-A project by IT students to showcase **technical and practical skills** on a real-world web application while learning new frameworks, tools, and AI integration.
-
----
-
-## 📖 Description
-**The Dicktective** is a multipurpose platform combining portfolio, blogging, flashcards, and games into one. It’s designed not only to **demonstrate full-stack development skills** but also to explore **AI, automation, and modern frameworks**.
-This project helps us practice collaboration, coding standards, and deployment in a fun, hands-on way.
-
----
-
-## ✨ Features
-- **Portfolio Showcase**:
-  - Display personal CVs.
-  - Users can generate their own **business cards** based on templates by filling in their details.
-
-- **Blog System**:
-  - A place to post memories, updates, and reflections.
-  - Supports images, markdown-style formatting, and comments (future).
-
-- **Flashcards (Spaced Repetition)**:
-  - Swipe to study words.
-  - Japanese (*Minna no Nihongo*) and English (B2, C1) vocabulary decks.
-  - Words reappear if marked “forgotten” for reinforcement.
-
-- **Games (Python Framework)**:
-  - 🎮 Snake Game – classic practice.
-  - 🎲 Quiz Game – learn new facts while playing.
-  - 🧠 Memory Match – match vocabulary words and meanings.
-  - (More to come: typing speed game, math challenges, AI-assisted puzzles).
-
----
-
-## 🛠 Tech Stack
-- **Backend**: Flask
-- **Frontend**: HTML, CSS, JavaScript (+ React for some features in the future)
-- **Database**: SQLite (default), with options for MySQL/Postgres
-- **Testing**: Selenium, Pytest
-- **Other Tools**: Python-dotenv, Flask-WTF, SQLAlchemy
-
----
 
 ## 🚀 Installation & Setup
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/nancy-builds/the-dicktective.git
-   cd the-dicktective
-````
-
+   git clone https://github.com/nancy-builds/kltn.git
+   cd kltn
+   
 2. **Create virtual environment**
 
    ```bash
@@ -132,39 +88,6 @@ This project is licensed under the **MIT License** – feel free to use and modi
 👩‍💻 **Developers**:
 
 * \[Nancy] – [GitHub](https://github.com/nancy-builds)
-
-
-Dimension by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-
-
-This is Dimension, a fun little one-pager with modal-ized (is that a word?) "pages"
-and a cool depth effect (click on a menu item to see what I mean). Simple, fully
-responsive, and kitted out with all the usual pre-styled elements you'd expect.
-Hope you dig it :)
-
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
-
-(* = not included)
-
-AJ
-aj@lkn.io | @ajlkn
-
-
-Credits:
-	Demo Images:
-		Unsplash (unsplash.com)
-	Icons:
-		Font Awesome (fontawesome.io)
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
-
-
-
-
 
 
 
