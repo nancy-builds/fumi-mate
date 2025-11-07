@@ -7,15 +7,16 @@
         <meta name="author" content="">
         <title>{% block title %}文メイト{% endblock %}</title>
 
-        <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Parisienne&family=Zen+Maru+Gothic:wght@500&display=swap" rel="stylesheet">
 
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/templatemo-topic-listing.css') }}" rel="stylesheet">
+        <link href="{{ url_for('teacher.static', filename='teacher.css') }}" rel="stylesheet">
+        <link href="{{ url_for('student.static', filename='student.css') }}" rel="stylesheet">
+
     </head>
 
     <body id="top">
@@ -28,173 +29,262 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ url_for('main.home')}}" >
+
                         <i class="bi-mortarboard-fill"></i>
                         <span>日本語</span>
                     </a>
-<div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.role == 'student' %}
+                                <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="{{ url_for('student.view_tasks') }}">Task</a>
+                                    </li>
 
-    {% if current_user.is_authenticated %}
-        {% if current_user.role == 'student' %}
-        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#">Test</a>
-            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="{{ url_for('student.view_submissions') }}">Submission</a>
+                                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#">My Submission</a>
-            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#section_5">Contact</a>
-            </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+                                        <ul class="dropdown-menu dropdown-menu-light p-1" aria-labelledby="navbarLightDropdownMenuLink">
+                                            <li class="mb-1">
+                                                <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="kanji.html">
+                                                    <span class="me-3 fs-3 bi-bookmark-plus" aria-hidden="true"></span>
+                                                    <div>
+                                                        <div class="fw-semibold">Kanji</div>
+                                                        <small class="description text-muted">Lists, readings & stroke order</small>
+                                                    </div>
+                                                </a>
+                                            </li>
 
-                <ul class="dropdown-menu dropdown-menu-light p-3" aria-labelledby="navbarLightDropdownMenuLink" style="min-width: 240px;">
-                    <li class="mb-1">
-                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="kanji.html">
-                            <span class="me-3 fs-3 bi-bookmark-plus" aria-hidden="true"></span>
-                            <div>
-                                <div class="fw-semibold">Kanji</div>
-                                <small class="text-muted">Lists, readings & stroke order</small>
-                            </div>
-                        </a>
-                    </li>
+                                            <li class="mb-1">
+                                                <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="grammar-tips.html">
+                                                    <span class="me-3 fs-3 bi-pencil-square" aria-hidden="true"></span>
+                                                    <div>
+                                                        <div class="fw-semibold">Grammar Tips</div>
+                                                        <small class="description text-muted">Short lessons & common mistakes</small>
+                                                    </div>
+                                                </a>
+                                            </li>
 
-                    <li class="mb-1">
-                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="grammar-tips.html">
-                            <span class="me-3 fs-3 bi-pencil-square" aria-hidden="true"></span>
-                            <div>
-                                <div class="fw-semibold">Grammar Tips</div>
-                                <small class="text-muted">Short lessons & common mistakes</small>
-                            </div>
-                        </a>
-                    </li>
+                                            <li class="mb-1">
+                                                <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="progress-tracking.html">
+                                                    <span class="me-3 fs-3 bi-graph-up-arrow" aria-hidden="true"></span>
+                                                    <div>
+                                                        <div class="fw-semibold">Progress</div>
+                                                        <small class="description text-muted">View your study streak and scores</small>
+                                                    </div>
+                                                </a>
+                                            </li>
 
-                    <li class="mb-1">
-                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="progress-tracking.html">
-                            <span class="me-3 fs-3 bi-graph-up-arrow" aria-hidden="true"></span>
-                            <div>
-                                <div class="fw-semibold">Progress</div>
-                                <small class="text-muted">View your study streak and scores</small>
-                            </div>
-                        </a>
-                    </li>
+                                            <li class="mb-1">
+                                                <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="how-it-works.html">
+                                                    <span class="me-3 fs-3 bi-question-circle" aria-hidden="true"></span>
+                                                    <div>
+                                                        <div class="fw-semibold">How it works</div>
+                                                        <small class="description text-muted">Quick guide to using the site</small>
+                                                    </div>
+                                                </a>
+                                            </li>
 
-                    <li class="mb-1">
-                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="how-it-works.html">
-                            <span class="me-3 fs-3 bi-question-circle" aria-hidden="true"></span>
-                            <div>
-                                <div class="fw-semibold">How it works</div>
-                                <small class="text-muted">Quick guide to using the site</small>
-cd                             </div>
-                        </a>
-                    </li>
+                                            <li>
+                                                <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="contact.html">
+                                                    <span class="me-3 fs-3" aria-hidden="true">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-arms-up" viewBox="0 0 16 16">
+                                                          <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                                                          <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
+                                                        </svg>
+                                                    </span>
+                                                    <div>
+                                                        <div class="fw-semibold">Contact</div>
+                                                        <small class="description text-muted">Bugs, suggestions, collabs</small>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                    <li>
-                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="contact.html">
-                            <i class="me-3 fs-3 bi bi-person-arms-up" aria-hidden="true"></i>
-                            <div>
-                                <div class="fw-semibold">Contact</div>
-                                <small class="text-muted">Bugs, suggestions, collabs</small>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                            {% elif current_user.role == 'teacher' %}
+                                <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="{{ url_for('teacher.view_tasks') }}" >Task Management</a>
+                                    </li>
 
-        {% elif current_user.role == 'teacher' %}
-        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#">Task Management</a>
-            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="{{ url_for('teacher.view_tasks') }}">Submission Review</a>
+                                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#">Submission Review</a>
-            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                                    </li>
+                                </ul>
+                            {% endif %}
 
-            <li class="nav-item">
-                <a class="nav-link click-scroll" href="#section_5">Contact</a>
-            </li>
-        </ul>
+                        {% else %}
+                                <ul class="navbar-nav ms-lg-5 me-lg-auto d-flex flex-row gap-3">
+                                    <li class="nav-item">
+                                      <a href="{{ url_for('auth.login') }}" class="nav-link click-scroll">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="{{ url_for('auth.register') }}" class="nav-link click-scroll">Sign Up</a>
+                                    </li>
+                              </ul>
+                              {% endif %}
+                            <!-- User not authenticated -->
+                                    <ul class="navbar-nav ms-auto gap-4 d-flex flex-row">
+                                        <li class="nav-item">
+                                          <a class="navbar-icon smoothscroll bi-bell" href="#"></a>
+                                        </li>
 
-        {% endif %}
-    {% else %}
-        <!-- User not authenticated -->
-        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-            <li class="nav-item">
-                <a href="{{ url_for('auth.login') }}" class="nav-link click-scroll">Login</a>
-            </li>
+                                        <li class="nav-item ">
+                                          <a class="navbar-icon smoothscroll bi-gear" href="#"></a>
+                                        </li>
 
-            <li class="nav-item">
-                <a href="{{ url_for('auth.register') }}" class="nav-link click-scroll">Sign Up</a>
-            </li>
-        </ul>
-    {% endif %}
+                                        <li class="nav-item ">
+                                                  <span class="navbar-icon bi-person smoothscroll" data-bs-toggle="dropdown" role="button"></span>
+                                                    <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarLightDropdownMenuLink">
+                                                      <li class="mb-1">
+                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="kanji.html">
+                                                          <span class="me-3 fs-3 bi-bookmark-plus" aria-hidden="true"></span>
+                                                          <div>
+                                                            <div class="fw-semibold">Kanji</div>
+                                                            <small class="description text-muted">Lists, readings & stroke order</small>
+                                                          </div>
+                                                        </a>
+                                                      </li>
 
-    <div class="d-none d-lg-block">
-        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-    </div>
-</div>
+                                                      <li class="mb-1">
+                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="grammar-tips.html">
+                                                          <span class="me-3 fs-3 bi-pencil-square" aria-hidden="true"></span>
+                                                          <div>
+                                                            <div class="fw-semibold">Grammar Tips</div>
+                                                            <small class="description text-muted">Short lessons & common mistakes</small>
+                                                          </div>
+                                                        </a>
+                                                      </li>
 
+                                                      <li class="mb-1">
+                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="progress-tracking.html">
+                                                          <span class="me-3 fs-3 bi-graph-up-arrow" aria-hidden="true"></span>
+                                                          <div>
+                                                            <div class="fw-semibold">Progress</div>
+                                                            <small class="description text-muted">View your study streak and scores</small>
+                                                          </div>
+                                                        </a>
+                                                      </li>
 
+                                                      <li class="mb-1">
+                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="how-it-works.html">
+                                                          <span class="me-3 fs-3 bi-question-circle" aria-hidden="true"></span>
+                                                          <div>
+                                                            <div class="fw-semibold">How it works</div>
+                                                            <small class="description text-muted">Quick guide to using the site</small>
+                                                          </div>
+                                                        </a>
+                                                      </li>
+
+                                                      <li>
+                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="contact.html">
+                                                          <span class="me-3 fs-3" aria-hidden="true">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-arms-up" viewBox="0 0 16 16">
+                                                              <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                                                              <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
+                                                            </svg>
+                                                          </span>
+                                                          <div>
+                                                            <div class="fw-semibold">Contact</div>
+                                                            <small class="description text-muted">Bugs, suggestions, collabs</small>
+                                                          </div>
+                                                        </a>
+                                                      </li>
+                                                </ul>
+                                          </li>
+                                      </ul>
+
+                                </div>
+                        </div>
 
                 </div>
+
             </nav>
 
              {% block content %}{% endblock %}
 
         </main>
 
-        <footer class="section-padding container">
-                <div class="footer-content-top">
 
-                    <div class="footer-left-promo">
-                        <a class="navbar-brand" href="index.html">
-                            <i class="bi-mortarboard-fill"></i>
-                            <span>日本語</span>
-                        </a>
-                        <p class="footer-promo-text">Clear your desk. Tie your hair up. Grab a coffee, and just start.</p>
+    <footer class="section-padding py-5">
 
-                        <div class="footer-social">
-                            <a href="#"><i class="bi-facebook"></i></a>
-                            <a href="#"><i class="bi-instagram"></i></a>
-                            <a href="#"><i class="bi-tiktok"></i></a>
-                            <a href="#"><i class="bi-linkedin"></i></a>
-                            <a href="https://github.com/nancy-builds"><i class="bi-github"></i></a>
-                        </div>
-                    </div>
+            <div class="footer-content-top container">
 
-                    <div class="footer-column footer-middle-image">
-                        <img src="{{ url_for('static', filename='images/footer_study_girl.png') }}"
-                             alt="Study Girl"
-                             class="footer-image">
-                    </div>
+                <div class="footer-left-promo">
+                    <a class="navbar-brand" href="index.html">
+                        <i class="bi-mortarboard-fill"></i>
+                        <span>日本語</span>
+                    </a>
+                    <p class="footer-promo-text">Clear your desk. Tie your hair up. Grab a coffee, and just start.</p>
 
-                    <div class="footer-column footer-right-links">
-
-                        <div class="footer-link-group">
-                            <h4 class="footer-link-title">Practice</h4>
-                            <ul>
-                                <li><a href="#">Cold brew</a></li>
-                                <li><a href="#">Matcha</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Bundles</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="footer-link-group">
-                            <h4 class="footer-link-title">日本語</h4>
-                            <ul>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="bi-facebook"></i></a>
+                        <a href="#"><i class="bi-instagram"></i></a>
+                        <a href="#"><i class="bi-tiktok"></i></a>
+                        <a href="#"><i class="bi-linkedin"></i></a>
+                        <a href="https://github.com/nancy-builds"><i class="bi-github"></i></a>
                     </div>
                 </div>
+
+                <div class=" footer-middle-image">
+                    <img src="{{ url_for('static', filename='images/footer_study_girl.png') }}"
+                         alt="Study Girl"
+                         class="footer-image">
+                </div>
+
+                <div class=" footer-right-links">
+                    <div class="footer-link-group">
+                        <h4 class="footer-link-title">Practice</h4>
+                        <ul>
+                            <li><a href="#">Cold brew</a></li>
+                            <li><a href="#">Matcha</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Bundles</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-group">
+                        <h4 class="footer-link-title">日本語</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-group">
+                        <h4 class="footer-link-title">日本語</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-group">
+                        <h4 class="footer-link-title">日本語</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
             <hr class="footer-divider">
 
             <div class="footer-legal">
@@ -211,6 +301,8 @@ cd                             </div>
         <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
         <script src="{{ url_for('static', filename='js/click-scroll.js') }}"></script>
         <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+        <script src="{{ url_for('teacher.static', filename='teacher.js') }}"></script>
+        <script src="{{ url_for('student.static', filename='student.js') }}"></script>
 
     </body>
 </html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}View Submission{% endblock %}
+
+{% block content %}
+<section class="section-padding mt-5 container">
+  <h2 class="mb-4">{{ submission.task.title if submission.task else "Submission Detail" }}</h2>
+
+  <div class="card shadow-sm p-4 mb-4">
+    <h5>Your Writing</h5>
+    <p class="mt-2">{{ submission.content | replace('\n', '<br>') | safe }}</p>
+  </div>
+
+  <div class="card shadow-sm p-4">
+    <h5>Feedback & Scores</h5>
+    <p><strong>AI Score:</strong> {{ submission.ai_score or '—' }}</p>
+    <p><strong>Teacher Score:</strong> {{ submission.teacher_score or '—' }}</p>
+    <p><strong>AI Feedback:</strong><br> {{ submission.ai_feedback or '—' }}</p>
+    <p><strong>Teacher Feedback:</strong><br> {{ submission.teacher_feedback or '—' }}</p>
+  </div>
+
+</section>>
+{% endblock %}
