@@ -7,7 +7,6 @@ from .blueprints.teacher import bp as teacher_bp
 from .blueprints.student import bp as student_bp
 from app.models import User, Teacher, Student
 
-
 def create_app(config_class="app.config.Config"):
     app = Flask(__name__)
     app.config.from_object(config_class)
