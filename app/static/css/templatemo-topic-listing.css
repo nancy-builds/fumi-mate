@@ -10,8 +10,10 @@
   --border-color:                 #7fffd4;
   --link-hover-color:             #13547a;
 
-  --body-font-family:             'Open Sans', sans-serif;
-  --title-font-family:            'Montserrat', sans-serif;
+  --japanese-font-family: "Zen Maru Gothic", sans-serif;
+  --body-font-family: "Zen Maru Gothic", sans-serif;
+  --handwriting-font-family: "Parisienne", cursive;
+  --title-font-family: "DM Serif Text", serif;
 
   --h1-font-size:                 58px;
   --h2-font-size:                 46px;
@@ -19,9 +21,9 @@
   --h4-font-size:                 28px;
   --h5-font-size:                 24px;
   --h6-font-size:                 22px;
-  --p-font-size:                  20px;
+  --p-font-size:                  16px;
   --menu-font-size:               14px;
-  --btn-font-size:                18px;
+  --btn-font-size:                20px;
   --copyright-font-size:          16px;
 
   --border-radius-large:          100px;
@@ -85,12 +87,11 @@ h5 {
 }
 
 h6 {
-  color: var(--primary-color);
   font-size: var(--h6-font-size);
 }
 
 p {
-  color: var(--p-color);
+  color: var(--dark-color);
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-normal);
 }
@@ -126,18 +127,14 @@ strong {
 /*---------------------------------------
   SECTION               
 -----------------------------------------*/
-/* Define a variable for the background image path */
 :root {
     --hero-image: url('../static/images/japan.jpg');
 }
 
-/* 1. Hero Section Container and Background */
 .hero-section {
-    /* Set a visually appealing height for the hero area */
     height: 70vh; /* 70% of the viewport height */
     width: 100%;
 
-    /* Background Image Properties */
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), var(--hero-image);
     background-size: cover; /* Ensures the image covers the entire container */
     background-position: center top; /* Centers the image and aligns it to the top */
@@ -152,40 +149,25 @@ strong {
     box-sizing: border-box; /* Includes padding in the total width/height */
 }
 
-/* 2. Text Content Styling */
-.hero-content {
-    /* Ensures the text stays within a readable width, but mostly relies on the padding of the parent */
-    max-width: 600px;
-    color: white; /* White text color */
-}
 
 /* 3. Main Title Styling */
 .main-title {
-    font-family: 'Georgia', serif; /* Use an elegant serif font */
+    font-family: var(--title-font-family);
     font-size: 4.5vw; /* Responsive font size based on viewport width */
     font-weight: normal; /* Makes the font less harsh */
     line-height: 1.1;
     margin: 0 0 20px 0; /* Space below the main title */
-
-    /* Add a subtle shadow for better readability against the background */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* 4. Subtitle/Paragraph Styling */
 .subtitle {
-    font-family: 'Arial', sans-serif; /* A clean sans-serif for the smaller text */
-    font-size: 1.4vw; /* Slightly smaller responsive size */
-    font-weight: 300; /* Light weight */
+  font-family: var(--handwriting-font-family);
+    font-size: var(--p-font-size);
     line-height: 1.4;
     margin: 0;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    color: var(--white-font-family);
 }
-
-
-
-
-
-
 
 .section-padding {
   padding-top: 100px;
@@ -229,8 +211,7 @@ strong {
   border-left: 0;
   color: var(--p-color);
   font-family: var(--title-font-family);
-  font-size: var(--btn-font-size);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   padding: 15px 25px;
   transition: all 0.3s;
 }
@@ -239,13 +220,15 @@ strong {
   margin-right: 20px;
 }
 
-.nav-tabs .nav-item.show .nav-link, 
+.nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active,
-.nav-tabs .nav-link:focus, 
+.nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
   border-bottom-color: var(--primary-color);
   color: var(--primary-color);
 }
+
+
 
 
 /*---------------------------------------
@@ -328,7 +311,7 @@ strong {
 -----------------------------------------*/
 .sticky-wrapper {
   position: fixed;
-  top: 40px; /* below the dynamic bar */
+  top: 30px; /* below the dynamic bar */
   left: 0;
   right: 0;
   z-index: 1020;
@@ -337,10 +320,7 @@ strong {
 .navbar {
   background-color: var(--white-color);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 9;
-  padding: 12px 0;
 }
-
 
 .navbar-brand,
 .navbar-brand:hover {
@@ -362,20 +342,17 @@ strong {
 .navbar-nav .nav-link {
   display: inline-block;
   color: var(--dark-color);
-  font-family: var(--title-font-family); 
   font-size: var(--menu-font-size);
-  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  position: relative;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  font-family: var(--p-font-family);
 }
 
-.navbar-nav .nav-link.active, 
+
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--primary-color);
 }
+
 
 .navbar .dropdown-menu {
   background: var(--white-color);
@@ -409,9 +386,17 @@ strong {
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   position: relative;
 }
+
+small.description {
+  font-family: var(--body-font-family);
+  font-size: var(--menu-font-size);
+  color: var(--p-color);
+  opacity: 0.85;
+  text-transform: none !important;
+}
+
 
 .navbar .dropdown-item.active, 
 .navbar .dropdown-item:active,
@@ -439,6 +424,12 @@ strong {
   border: 0;
 }
 
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+  transform-origin: top right; /* makes animation pivot from right side */
+}
+
 @media screen and (min-width: 992px) {
   .navbar .dropdown:hover .dropdown-menu {
     opacity: 1;
@@ -448,20 +439,15 @@ strong {
 }
 
 .navbar-icon {
-  background: var(--white-color);
-  border-radius: var(--border-radius-large);
+  color: var(--dark-color);
   display: inline-block;
-  font-size: var(--h5-font-size);
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  font-size: var(--h6-font-size);
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .navbar-icon:hover {
-  background: var(--primary-color);
-  color: var(--white-color);
+  color: var(--primary-color);
 }
 
 .navbar-toggler {
@@ -538,7 +524,7 @@ strong {
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -546,9 +532,9 @@ strong {
   color: var(--white-color);
   text-align: center;
   overflow: hidden;
-  padding: 8px 0;
-  font-size: 1rem;
-  z-index: 10; /* higher than navbar */
+  padding: 4px 0;
+  font-size: var(--menu-font-size);
+  z-index: 1020;
 
 }
 
@@ -579,43 +565,34 @@ background-image: url("../images/japan.jpg");
   background-size: cover;         /* Make it cover the whole area */
   background-position: center;    /* Center the image */
   background-repeat: no-repeat;   /* Prevent repeating */
-  height: 80vh;                  /* Full viewport height */
-  display: flex;                  /* Center content */
+  height: 90vh;                  /* Full viewport height */
 
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* push content downward */
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
-  padding-top: 150px;
-  padding-bottom: 150px;
-}
-
-.hero-section .input-group {
-  background-color: var(--white-color);
-  border-radius: var(--border-radius-large);
-  padding: 10px 15px;
-}
-
-.hero-section .input-group-text {
-  background-color: transparent;
-  border: 0;
-}
-
-.hero-section input[type="search"] {
-  border: 0;
-  box-shadow: none;
-  margin-bottom: 0;
-  padding-left: 0;
-}
-
-.hero-section button[type="submit"] {
-  background-color: var(--primary-color);
-  border: 0;
-  border-radius: var(--border-radius-large) !important;
   color: var(--white-color);
-  max-width: 150px;
+
 }
 
+.page-section {
+  min-height: 100vh;              /* full screen height */
+  display: flex;                  /* enable flexbox */
+  align-items: center;            /* vertical center */
+  justify-content: center;        /* horizontal center */
+}
 
+.field-section {
+    max-width: 800px;
+    min-height: 80vh;              /* full screen height */
+    display: flex;                  /* enable flexbox */
+    align-items: center;            /* vertical center */
+    justify-content: center;        /* horizontal center */
+    margin-top: 1500px;
+    font-size: var(--title-font-size);
+}
 /*---------------------------------------
   TOPICS              
 -----------------------------------------*/
@@ -636,13 +613,14 @@ background-image: url("../images/japan.jpg");
   position: relative;
   overflow: hidden;
   padding: 30px;
-  transition: all 0.3s ease;
   height: 100%;
+  transition: all 0.3s ease; /* giúp chuyển động mượt hơn */
 }
 
 .custom-block:hover {
   background-color: var(--secondary-color);
-  transform: translateY(-3px);
+  transform: translateY(-10px) scale(1.03); /* nổi bật hơn, hơi phóng to */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* thêm bóng đổ */
 }
 
 .custom-block > a {
@@ -652,9 +630,9 @@ background-image: url("../images/japan.jpg");
 .custom-block-image {
   display: block;
   width: 100%;
-  height: 200px;
+  height: 100px;
   object-fit: cover;
-  margin-top: 35px;
+  margin-top: 20px;
 }
 
 .custom-block .rounded-pill {
@@ -817,111 +795,6 @@ blockquote {
   border-color: var(--secondary-color);
 }
 
-
-/*---------------------------------------
-  TIMELINE              
------------------------------------------*/
-.timeline-section {
-  background-image: url('../images/colleagues-working-cozy-office-medium-shot.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-}
-
-.timeline-container .vertical-scrollable-timeline {
-  list-style-type: none;
-  position: relative;
-  padding-left: 0;
-}
-
-.timeline-container .vertical-scrollable-timeline .list-progress {
-  width: 8px;
-  height: 87%;
-  background-color: var(--primary-color);
-  position: absolute;
-  left: 52px;
-  top: 0;
-  overflow: hidden;
-}
-
-.timeline-container .vertical-scrollable-timeline .list-progress .inner {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background-color: var(--secondary-color);
-  width: 100%;
-}
-
-.timeline-container .vertical-scrollable-timeline li {
-  position: relative;
-  padding: 20px 0px 65px 145px;
-}
-
-.timeline-container .vertical-scrollable-timeline li:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-container .vertical-scrollable-timeline li p {
-  line-height: 40px;
-}
-
-.timeline-container .vertical-scrollable-timeline li p:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-container .vertical-scrollable-timeline li .icon-holder {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 104px;
-  height: 104px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--secondary-color);
-  border-radius: 50%;
-  z-index: 1;
-  transition: 0.4s all;
-}
-
-.timeline-container .vertical-scrollable-timeline li .icon-holder::before {
-  content: "";
-  width: 80px;
-  height: 80px;
-  border: 4px solid #fff;
-  position: absolute;
-  background-color: var(--secondary-color);
-  border-radius: 50%;
-  z-index: -1;
-  transition: 0.4s all;
-}
-
-.timeline-container .vertical-scrollable-timeline li .icon-holder i {
-  font-size: 25px;
-  color: var(--white-color);
-}
-
-.timeline-container .vertical-scrollable-timeline li::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 8px;
-  background-color: transparent;
-  left: 52px;
-  z-index: 0;
-}
-
-.timeline-container .vertical-scrollable-timeline li.active .icon-holder {
-  background-color: var(--primary-color);
-}
-
-.timeline-container .vertical-scrollable-timeline li.active .icon-holder::before {
-  background-color: var(--primary-color);
-}
-
-
 /*---------------------------------------
   FAQs              
 -----------------------------------------*/
@@ -1023,6 +896,7 @@ blockquote {
   SITE FOOTER              
 -----------------------------------------*/
 
+
 .footer-content-top {
     display: flex;
     justify-content: space-between; /* Pushes the columns apart */
@@ -1031,7 +905,6 @@ blockquote {
 
 .footer-left-promo {
     flex-basis: 25%; /* Give the left column a fixed width */
-    max-width: 300px;
 }
 
 .footer-logo {
@@ -1040,23 +913,14 @@ blockquote {
     margin-bottom: 20px;
 }
 
-.footer-promo-title {
-    font-size: 2.2em;
-    font-weight: 900; /* Extra bold */
-    color: var(--primary-color);
-    margin: 0 0 10px 0;
-    text-transform: lowercase;
-}
-
 .footer-promo-text {
-    font-size: 0.8em;
+    font-size: var(--p-font-size);
     margin-bottom: 30px;
 }
 
 .footer-social a {
     color: var(--primary-color);
     font-size: 1.5em;
-    margin-right: 15px;
     transition: color 0.3s;
 }
 
@@ -1081,10 +945,10 @@ blockquote {
 
 /* 1.3 Right Links Column */
 .footer-right-links {
-    flex-basis: 35%; /* Give the right link columns a fixed width */
+    flex-basis: 55%; /* Give the right link columns a fixed width */
     display: flex; /* Use Flexbox to manage the 4 sub-groups */
-    flex-wrap: wrap; /* Allows groups to wrap to the next line if needed */
-    justify-content: space-between;
+    flex-wrap: nowrap; /* Allows groups to wrap to the next line if needed */
+    justify-content: space-evenly;
 }
 
 .footer-link-group {
@@ -1093,10 +957,8 @@ blockquote {
 }
 
 .footer-link-title {
-    font-size: var(--p-font-size);
-    font-weight: bold;
+    font-size: var(--h6-font-size);
     color: var(--primary-color);
-    margin: 0 0 15px 0;
 }
 
 .footer-link-group ul {
@@ -1105,9 +967,9 @@ blockquote {
     margin: 0;
 }
 
-.footer-link-group li {
-    margin-bottom: 8px;
-
+.footer-link-group ul li {
+  margin: 0;              /* remove any gap between list items */
+  line-height: 1.5;       /* tighten vertical spacing */
 }
 
 .footer-link-group a {
@@ -1121,7 +983,6 @@ blockquote {
     color: var(--primary-color);
 }
 
-
 /* --- 2. Bottom Legal Section --- */
 
 .footer-divider {
@@ -1132,7 +993,7 @@ blockquote {
     display: flex;
     justify-content: center; /* Center the links and copyright text */
     align-items: center;
-    font-size: 1rem;
+    font-size: var(--copyright-font-size);
     color: var(--p-color);
 }
 
@@ -1149,7 +1010,7 @@ blockquote {
 
 
 /*---------------------------------------
-  SOCIAL ICON               
+  SOCIAL ICON LIST
 -----------------------------------------*/
 .social-icon {
   margin: 0;
@@ -1216,7 +1077,7 @@ blockquote {
   }
   
   .navbar {
-    background-color: var(--secondary-color);
+    background-color: var(--white-color);
   }
 
   .navbar-nav .dropdown-menu {
@@ -1225,8 +1086,6 @@ blockquote {
     opacity: 1;
     pointer-events: auto;
     max-width: 155px;
-    margin-top: 10px;
-    margin-bottom: 15px;
   }
 
   .navbar-expand-lg .navbar-nav {
@@ -1235,10 +1094,6 @@ blockquote {
 
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 0;
-  }
-
-  .nav-tabs .nav-link:first-child {
-    margin-right: 5px;
   }
 
   .nav-tabs .nav-link {
@@ -1296,4 +1151,6 @@ blockquote {
     font-size: 20px;
   }
 }
+
+
 

@@ -1,6 +1,6 @@
 from flask import render_template
 from flask_login import login_required, current_user
-from . import bp   # import blueprint "main" từ __init__.py
+from . import bp
 
 @bp.route("/")
 def home():

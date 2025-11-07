@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Task Detail{% endblock %}
+
+
+{% block content %}
+<section class="container section-padding mx-auto mt-5">
+    <!-- Heading on top -->
+  <h2 class="mb-4">{{ task.title }}</h2>
+
+  <div class="card shadow-sm px-4 py-2 ">
+    <p><strong>Description: </strong>{{ task.description or "No description provided." }}</p>
+
+    <p><strong>Due Date: </strong>{{ task.due_date.strftime('%Y-%m-%d') if task.due_date else 'No due date' }}</p>
+
+    <p><strong>Created By: </strong>{{ task.created_user.username }}</p>
+  </div>
+
+      {% if questions %}
+        <h6 class="mt-3">Questions {{ questions|length }}</h6>
+        <ol>
+          {% for q in questions %}
+            <li>
+              {{ q.question_text }} <span class="text-muted">[{{ q.question_type }}]</span><br>
+              {% if q.hint %}<em>Hint:</em> {{ q.hint }}<br>{% endif %}
+              {% if q.sample_answer %}<em>Sample answer:</em> {{ q.sample_answer }}<br>{% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+    <div class="text-center">
+          <img src="{{ url_for('static', filename='images/angry-levi.png') }}"
+               alt="No tasks" class="my-3" style="width: 150px;">
+          <p class="text-muted mb-2">No questions added yet.</p>
+            <a href="{{ url_for('teacher.create_task') }}" class="btn btn-primary">
+              Create Question
+            </a>
+        </div>
+      {% endif %}
+
+  <div class="mt-4">
+    <a href="{{ url_for('teacher.view_tasks') }}" class="btn btn-secondary">Back to Tasks</a>
+    <a href="{{ url_for('teacher.edit_task', task_id=task.id) }}" class="btn btn-warning">Edit</a>
+    <form action="{{ url_for('teacher.delete_task', task_id=task.id) }}" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

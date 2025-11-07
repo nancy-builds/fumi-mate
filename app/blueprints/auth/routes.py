@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from app.extensions import db, login_manager
-from app.models import User
+from app.models import User, Teacher, Student
 from . import bp
 from .forms import LoginForm, RegisterForm  # import form từ forms.py
 
@@ -19,14 +19,16 @@ def register():
         password = form.password.data
         role = form.role.data
 
-        # Database logic giữ nguyên
         if User.query.filter_by(username=username).first():
             flash("Username already exists")
             return redirect(url_for('auth.register'))
 
-        user = User(username=username,
-                    password_hash=generate_password_hash(password),
-                    role=role)
+        if role == "teacher":
+            user = Teacher(username=username,
+                        password_hash=generate_password_hash(password))
+        else:
+            user = Student(username=username,
+                           password_hash=generate_password_hash(password))
 
         db.session.add(user)
         db.session.commit()

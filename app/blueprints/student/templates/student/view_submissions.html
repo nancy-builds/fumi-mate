@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}My Submissions{% endblock %}
+
+{% block content %}
+<section class="section-padding mt-5 container">
+  <h2 class="mb-4">My Submissions</h2>
+  {% if submissions %}
+  <div class="table-responsive shadow-sm rounded-3">
+      <table class="table table-hover table-bordered align-middle mb-0 overflow-hidden">
+        <thead class="table-light border-bottom border-2 border-primary-subtle">
+        <tr>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Updated</th>
+          <th>AI Score</th>
+          <th>Teacher Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sub in submissions %}
+        <tr class="clickable-row" data-href="{{ url_for('student.view_submission_detail', submission_id=sub.id) }}">
+          <td class="fw-semibold">{{ sub.task.title if sub.task else '—' }}</td>
+          <td>
+            {% if sub.status == 'submitted' %}
+              <span class="badge bg-success">Submitted</span>
+            {% else %}
+              <span class="badge bg-secondary">Draft</span>
+            {% endif %}
+          </td>
+          <td>{{ sub.updated_at.strftime("%d %b %Y %H:%M") }}</td>
+          <td>{{ sub.ai_score or '—' }}</td>
+          <td>{{ sub.teacher_score or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="text-center">
+      <img src="{{ url_for('static', filename='images/angry-levi.png') }}"
+           alt="No tasks" class="mb-3" style="width: 200px;">
+      <p class="text-muted mb-0">You haven’t submitted any writing tests yet.</p>
+    </div>  {% endif %}
+</section>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from .blueprints.main import bp as main_bp
 from .blueprints.auth import bp as auth_bp
 from .blueprints.teacher import bp as teacher_bp
 from .blueprints.student import bp as student_bp
-from app.models.user import User
+from app.models import User, Teacher, Student
 
 
 def create_app(config_class="app.config.Config"):
@@ -17,6 +17,9 @@ def create_app(config_class="app.config.Config"):
     migrate.init_app(app, db)
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
+
+    with app.app_context():
+        db.create_all()
 
     # Blueprints
     app.register_blueprint(auth_bp)

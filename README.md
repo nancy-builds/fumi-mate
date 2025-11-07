@@ -1,3 +1,10 @@
+# Xoá file SQLite cũ
+rm instance/app.db  # hoặc nơi bạn lưu file db
+
+# Sau đó chạy lại
+flask db init
+flask db migrate -m "initial migration"
+flask db upgrade
 
 ## 🚀 Installation & Setup
 

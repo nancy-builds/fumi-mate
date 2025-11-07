@@ -1,0 +1,102 @@
+/* --- Layout & Container --- */
+
+/* --- Header --- */
+.test-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.test-header h2 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #222;
+}
+.test-header p {
+  color: #777;
+  margin-top: 0.3rem;
+}
+
+/* --- Timer --- */
+.timer-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  color: #444;
+  width: fit-content;
+  margin: 1rem auto 2rem;
+  border: 1px solid #eee;
+}
+.timer-box span {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* --- Warning --- */
+.warning {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #e63946;
+  background: #fff5f5;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Textarea --- */
+textarea {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  resize: vertical;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+}
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.15);
+}
+
+/* --- Buttons --- */
+.test-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 2rem;
+}
+button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+button.save-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+button.save-btn:hover {
+  background-color: #e0e0e0;
+}
+button.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+button.submit-btn:hover {
+  background-color: #d94c4c;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  textarea {
+    min-height: 180px;
+  }
+}
