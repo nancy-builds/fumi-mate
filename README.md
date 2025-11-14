@@ -8,6 +8,7 @@ flask db upgrade
 
 ## 🚀 Installation & Setup
 
+
 1. **Clone the repository**
    ```bash
    git clone https://github.com/nancy-builds/kltn.git
@@ -22,13 +23,22 @@ flask db upgrade
    ```
 
 3. **Install dependencies**
+Download from: [Visual C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+   
+   **Steps:**
+   1. Run the installer.
+   2. Select **C++ build tools**.
+   3. Make sure **MSVC v143** and **Windows 10 SDK** are checked.
+   4. Click **Install** and wait for the installation to complete.
+   5. **Restart your computer**.
+
+   Open a terminal in your project folder and run: 
 
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Run database migrations (if any)**
-
    ```bash
    flask db upgrade
    ```
@@ -100,3 +110,6 @@ This project is licensed under the **MIT License** – feel free to use and modi
 
 pip install python-dotenv
 flask seed-db
+
+ capture what's currently working:
+bashpip freeze > requirements.txt

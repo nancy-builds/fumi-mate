@@ -6,6 +6,12 @@ from .blueprints.auth import bp as auth_bp
 from .blueprints.teacher import bp as teacher_bp
 from .blueprints.student import bp as student_bp
 from app.models import User, Teacher, Student
+from dotenv import load_dotenv
+from app.core.rag_pipeline import RAGPipeline
+from app.core.langchain_agents import FeedbackAgents
+
+# Load environment variables (e.g., OPENAI_API_KEY)
+load_dotenv()
 
 def create_app(config_class="app.config.Config"):
     app = Flask(__name__)
@@ -20,6 +26,9 @@ def create_app(config_class="app.config.Config"):
     with app.app_context():
         db.create_all()
 
+    pipeline = RAGPipeline(persist_directory="./submissions_db")
+    agents = FeedbackAgents()
+
     # Blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(teacher_bp, url_prefix="/teacher")
@@ -32,5 +41,4 @@ def create_app(config_class="app.config.Config"):
 
     return app
 
-app = create_app()
 

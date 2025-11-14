@@ -2,6 +2,8 @@ from datetime import datetime
 from ..extensions import db
 
 class Submission(db.Model):
+    __tablename__ = 'submission'
+
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     student_id = db.Column(db.Integer, db.ForeignKey('user.id'))

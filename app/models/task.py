@@ -32,7 +32,6 @@ class Question(db.Model):
     question_type = db.Column(db.String(50))  # e.g., 'kanji', 'sentence', 'translation', 'essay'
     hint = db.Column(db.String(255))  # optional: e.g., “Use this word: 食べる”
     sample_answer = db.Column(db.Text)  # optional: teacher’s example answer
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<Question {self.id} ({self.question_type})>'

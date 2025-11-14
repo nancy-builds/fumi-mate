@@ -2,6 +2,8 @@ from datetime import datetime
 from ..extensions import db
 
 class AILog(db.Model):
+    __tablename__ = 'ai_log'
+
     id = db.Column(db.Integer, primary_key=True)
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     prompt = db.Column(db.Text)

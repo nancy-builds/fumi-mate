@@ -129,6 +129,7 @@
                             {% endif %}
 
                         {% else %}
+
                                 <ul class="navbar-nav ms-lg-5 me-lg-auto d-flex flex-row gap-3">
                                     <li class="nav-item">
                                       <a href="{{ url_for('auth.login') }}" class="nav-link click-scroll">Login</a>
@@ -137,83 +138,51 @@
                                       <a href="{{ url_for('auth.register') }}" class="nav-link click-scroll">Sign Up</a>
                                     </li>
                               </ul>
-                              {% endif %}
+
+                        {% endif %}
                             <!-- User not authenticated -->
-                                    <ul class="navbar-nav ms-auto gap-4 d-flex flex-row">
-                                        <li class="nav-item">
-                                          <a class="navbar-icon smoothscroll bi-bell" href="#"></a>
-                                        </li>
+                                <ul class="navbar-nav ms-auto gap-5 d-flex flex-row">
+                                    <li class="nav-item">
+                                      <a class="navbar-icon bi-cart3" href="#"></a>
+                                    </li>
 
-                                        <li class="nav-item ">
-                                          <a class="navbar-icon smoothscroll bi-gear" href="#"></a>
-                                        </li>
+                                    <li class="nav-item">
+                                      <span class="navbar-icon  bi-bell"></span>
+                                    </li>
 
-                                        <li class="nav-item ">
-                                                  <span class="navbar-icon bi-person smoothscroll" data-bs-toggle="dropdown" role="button"></span>
-                                                    <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarLightDropdownMenuLink">
-                                                      <li class="mb-1">
-                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="kanji.html">
-                                                          <span class="me-3 fs-3 bi-bookmark-plus" aria-hidden="true"></span>
-                                                          <div>
-                                                            <div class="fw-semibold">Kanji</div>
-                                                            <small class="description text-muted">Lists, readings & stroke order</small>
-                                                          </div>
-                                                        </a>
-                                                      </li>
+                                    <li class="nav-item dropdown">
+                                        <span class="navbar-icon profileBtn bi-person"></span>
+                                          <div class="dropdown-menu" id="dropdownMenu">
+                                            <a href="#">Settings</a>
+                                            <a href="#">My Profile</a>
+                                            <a href="#">Logout</a>
+                                          </div>
 
-                                                      <li class="mb-1">
-                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="grammar-tips.html">
-                                                          <span class="me-3 fs-3 bi-pencil-square" aria-hidden="true"></span>
-                                                          <div>
-                                                            <div class="fw-semibold">Grammar Tips</div>
-                                                            <small class="description text-muted">Short lessons & common mistakes</small>
-                                                          </div>
-                                                        </a>
-                                                      </li>
+                                  </li>
 
-                                                      <li class="mb-1">
-                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="progress-tracking.html">
-                                                          <span class="me-3 fs-3 bi-graph-up-arrow" aria-hidden="true"></span>
-                                                          <div>
-                                                            <div class="fw-semibold">Progress</div>
-                                                            <small class="description text-muted">View your study streak and scores</small>
-                                                          </div>
-                                                        </a>
-                                                      </li>
 
-                                                      <li class="mb-1">
-                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="how-it-works.html">
-                                                          <span class="me-3 fs-3 bi-question-circle" aria-hidden="true"></span>
-                                                          <div>
-                                                            <div class="fw-semibold">How it works</div>
-                                                            <small class="description text-muted">Quick guide to using the site</small>
-                                                          </div>
-                                                        </a>
-                                                      </li>
+                                    <li class="dropdown">
+                                      <button
+                                        class="btn btn-light dropdown-toggle"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                      >
+                                        Profile
+                                      </button>
 
-                                                      <li>
-                                                        <a class="dropdown-item rounded-3 py-2 d-flex align-items-start" href="contact.html">
-                                                          <span class="me-3 fs-3" aria-hidden="true">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-arms-up" viewBox="0 0 16 16">
-                                                              <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                                                              <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
-                                                            </svg>
-                                                          </span>
-                                                          <div>
-                                                            <div class="fw-semibold">Contact</div>
-                                                            <small class="description text-muted">Bugs, suggestions, collabs</small>
-                                                          </div>
-                                                        </a>
-                                                      </li>
-                                                </ul>
-                                          </li>
+                                      <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
                                       </ul>
+                                    </li>
 
-                                </div>
-                        </div>
-
+                              </ul>
+                    </div>
                 </div>
-
+                </div>
             </nav>
 
              {% block content %}{% endblock %}

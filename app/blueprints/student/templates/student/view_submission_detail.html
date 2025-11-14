@@ -18,5 +18,54 @@
     <p><strong>Teacher Feedback:</strong><br> {{ submission.teacher_feedback or '—' }}</p>
   </div>
 
+      <div class="card mb-4">
+    <div class="card-header">📣 Full Feedback</div>
+    <div class="card-body">
+      <p>{{ submission.ai_feedback | safe }}</p>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">✅ Action Plan</div>
+    <ul class="list-group list-group-flush">
+      {% for step in action_plan %}
+      <li class="list-group-item">{{ step }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">🧠 Practice Exercises</div>
+    <div class="card-body">
+      {% for exercise in practice_exercises %}
+      <div class="mb-3">
+        <h6>{{ exercise.title }}</h6>
+        <p>{{ exercise.description }}</p>
+        <pre><code>{{ exercise.example }}</code></pre>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">🔍 Detailed Analysis</div>
+    <div class="card-body">
+      <h6>Grammar</h6>
+      <pre>{{ detailed_analysis.grammar | tojson(indent=2) }}</pre>
+
+      <h6>Vocabulary</h6>
+      <pre>{{ detailed_analysis.vocabulary | tojson(indent=2) }}</pre>
+
+      <h6>Structure</h6>
+      <pre>{{ detailed_analysis.structure | tojson(indent=2) }}</pre>
+
+      <h6>Fluency</h6>
+      <pre>{{ detailed_analysis.fluency | tojson(indent=2) }}</pre>
+
+      <h6>Content</h6>
+      <pre>{{ detailed_analysis.content | tojson(indent=2) }}</pre>
+    </div>
+  </div>
+
 </section>>
 {% endblock %}

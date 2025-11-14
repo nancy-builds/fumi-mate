@@ -2,10 +2,9 @@ from ..extensions import db
 from .user import User
 
 class Student(User):
-    __tablename__ = "Student"
+    __tablename__ = "student"
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
     grade = db.Column(db.String(20))
 
     __mapper_args__ = {
