@@ -5,19 +5,22 @@
 <section class="container section-padding mx-auto mt-5">
 
     <!-- Heading on top -->
-    <h2 class="mb-4">All Tasks</h2>
+    <h2 class="mb-4">all tasks</h2>
 
-  <!-- Flash messages -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show auto-dismiss" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+
 
   <!-- Task List -->
   {% if tasks %}
@@ -43,18 +46,22 @@
             <td class="text-center">
               <div class="d-flex justify-content-start align-items-start gap-2">
                 <!-- Edit button -->
-                <a href="{{ url_for('teacher.edit_task', task_id=task.id) }}"
-                   class="btn btn-primary d-flex align-items-center justify-content-center"
+                <a href="{{ url_for('teacher.edit_task', task_id=task.id) }}" class="btn btn-icon"
                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit task">
-                    Edit
+                    <i class="bi-pencil-square"></i>
                 </a>
                 <!-- Delete button -->
                 <form action="{{ url_for('teacher.delete_task', task_id=task.id) }}" method="POST" class="m-0 p-0">
                   <button type="submit"
-                          class="btn btn-danger d-flex align-items-center justify-content-center"
+                          class="btn btn-icon"
                           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete task">
-                      Delete
+                        <i class="bi bi-trash3"></i>
                   </button>
+
+
+
+
+
                 </form>
               </div>
             </td>
@@ -63,19 +70,21 @@
           {% endfor %}
         </tbody>
       </table>
-    </div>
-    <!-- Create New Task Button -->
-      <div class="mb-3 my-3 text-end">
-        <a href="{{ url_for('teacher.create_task') }}" class="btn btn-primary">
-          Create New Task
-        </a>
-      </div>
+  </div>
+
+<div class="d-flex justify-content-end">
+  <a href="{{ url_for('teacher.create_task') }}" class="btn btn-light mt-3">
+      <span class="bi-plus-lg"></span>
+    Create New Task
+  </a>
+</div>
   {% else %}
     <div class="text-center">
-      <img src="{{ url_for('static', filename='images/angry-levi.png') }}"
+      <img src="{{ url_for('static', filename='images/crying_girl.png') }}"
            alt="No tasks" class="mb-3" style="width: 200px;">
       <p class="text-muted mb-2">No tasks created yet.</p>
-        <a href="{{ url_for('teacher.create_task') }}" class="btn btn-primary">
+        <a href="{{ url_for('teacher.create_task') }}" class="btn btn-solid">
+            <span class="bi-plus-lg"></span>
           Create New Task
         </a>
     </div>

@@ -12,6 +12,6 @@ class Submission(db.Model):
     ai_score = db.Column(db.Float)
     teacher_feedback = db.Column(db.Text)
     teacher_score = db.Column(db.Float)
-    status = db.Column(db.String(20), default='draft')
+    status = db.Column(db.String(20), default='draft') #done
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

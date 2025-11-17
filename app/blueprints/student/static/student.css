@@ -71,32 +71,41 @@ textarea:focus {
   gap: 15px;
   margin-top: 2rem;
 }
-button {
-  padding: 10px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.25s ease;
-}
-button.save-btn {
-  background-color: #f0f0f0;
-  color: #333;
-}
-button.save-btn:hover {
-  background-color: #e0e0e0;
-}
-button.submit-btn {
-  background-color: var(--primary-color);
-  color: white;
-}
-button.submit-btn:hover {
-  background-color: #d94c4c;
-}
+
 
 /* --- Responsive --- */
 @media (max-width: 600px) {
   textarea {
     min-height: 180px;
   }
+}
+
+
+
+
+
+
+
+
+
+
+.score-box {
+    background: #eef6ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+
+.details-section h3 {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.practice-section ul {
+    padding-left: 20px;
+}
+
+.practice-section li {
+    margin-bottom: 8px;
 }

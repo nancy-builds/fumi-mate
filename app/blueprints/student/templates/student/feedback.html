@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}View Submission{% endblock %}
+
+{% block content %}
+<section class="div-padding mt-5 container">
+  <h2 class="mb-4">feedback for ur submission</h2>
+    
+    <h2>Overall Score: {{ feedback.overall_score }}</h2>
+    <h3>Grade: {{ feedback.scoring.grade_letter }}</h3>
+    
+    <div>
+        <h2>Feedback</h2>
+        <p>{{ feedback.feedback.feedback_text }}</p>
+    </div>
+    
+    <div>
+        <h2>Action Plan</h2>
+        <p>{{ feedback.feedback.action_plan }}</p>
+    </div>
+    
+    <div>
+        <h2>Practice Exercises</h2>
+        <ul>
+            {% for ex in feedback.feedback.practice_exercises %}
+                <li>{{ ex }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div>
+        <h2>Detailed Analysis</h2>
+        <ul>
+            <li>Grammar: {{ feedback.grammar }}</li>
+            <li>Vocabulary: {{ feedback.vocabulary }}</li>
+            <li>Structure: {{ feedback.structure }}</li>
+            <li>Fluency: {{ feedback.fluency }}</li>
+            <li>Content: {{ feedback.content }}</li>
+        </ul>
+    </div>
+
+
+
+
+</section>
+{% endblock %}

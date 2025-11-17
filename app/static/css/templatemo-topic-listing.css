@@ -4,7 +4,7 @@
   --secondary-color:              #DC143C;
   --section-bg-color:             green;
   --custom-btn-bg-color:          #DC143C;
-  --custom-btn-bg-hover-color:    #F75270;
+  --custom-btn-bg-hover-color:    #F7CAC9;
   --dark-color:                   #000000;
   --p-color:                      #717275;
   --border-color:                 #7fffd4;
@@ -102,11 +102,6 @@ ul li {
   font-weight: var(--font-weight-normal);
 }
 
-a, 
-button {
-  touch-action: manipulation;
-  transition: all 0.3s;
-}
 
 a {
   display: inline-block;
@@ -127,10 +122,6 @@ strong {
 /*---------------------------------------
   SECTION               
 -----------------------------------------*/
-:root {
-    --hero-image: url('../static/images/japan.jpg');
-}
-
 .hero-section {
     height: 70vh; /* 70% of the viewport height */
     width: 100%;
@@ -150,24 +141,8 @@ strong {
 }
 
 
-/* 3. Main Title Styling */
-.main-title {
-    font-family: var(--title-font-family);
-    font-size: 4.5vw; /* Responsive font size based on viewport width */
-    font-weight: normal; /* Makes the font less harsh */
-    line-height: 1.1;
-    margin: 0 0 20px 0; /* Space below the main title */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
 
 /* 4. Subtitle/Paragraph Styling */
-.subtitle {
-  font-family: var(--handwriting-font-family);
-    font-size: var(--p-font-size);
-    line-height: 1.4;
-    margin: 0;
-    color: var(--white-font-family);
-}
 
 .section-padding {
   padding-top: 100px;
@@ -242,39 +217,96 @@ strong {
 /*---------------------------------------
   CUSTOM BUTTON               
 -----------------------------------------*/
-.custom-btn {
-  background: var(--custom-btn-bg-color);
-  border: 2px solid transparent;
-  border-radius: var(--border-radius-large);
-  color: var(--white-color);
-  font-size: var(--btn-font-size);
-  font-weight: var(--font-weight-semibold);
-  line-height: normal;
-  transition: all 0.3s;
-  padding: 10px 20px;
+/* Base button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 42px;          /* consistent height */
+
+  padding: 0 16px;
+  border-radius: 7px;   /* more square, slightly rounded */
+  font-size: var(--p-font-size);
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease;
 }
 
-.custom-btn:hover {
-  background: var(--custom-btn-bg-hover-color);
-  color: var(--white-color);
+/* Subtle press animation */
+.btn:active {
+  transform: scale(0.97);
 }
 
-.custom-border-btn {
-  background: transparent;
-  border: 2px solid var(--custom-btn-bg-color);
-  color: var(--custom-btn-bg-color);
+/* 1. Soft white button */
+.btn-light {
+  background: white ;
+  color: var(--secondary-color);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.12);
 }
 
-.custom-border-btn:hover {
-  background: var(--custom-btn-bg-color);
-  border-color: transparent;
-  color: var(--white-color);
+.btn-light:hover {
+  background: #e0e0e0;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.18);
 }
 
-.custom-btn-bg-white {
-  border-color: var(--white-color);
-  color: var(--white-color);
+/* 2. Outline button */
+.btn-outline {
+  background: white ;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
+
+.btn-outline:hover {
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* 3. Solid blue button */
+.btn-solid {
+  background: var(--secondary-color);
+  color: white;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+  border: 2px solid var(--secondary-color);
+
+}
+
+.btn-solid:hover {
+  background: white ;
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+
+.btn-icon {
+  width: 42px;              /* adjust size */
+  height: 42px;             /* same value -> perfect circle */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-icon i {
+  font-size: var(--h6-font-size);
+  color: var(--dark-color);
+}
+
+.btn-icon i:hover {
+  font-size: var(--h6-font-size);
+  color: var(--secondary-color);
+}
+
+
 
 
 /*---------------------------------------
@@ -379,15 +411,6 @@ strong {
   left: 10px;
 }
 
-.navbar .dropdown-item {
-  display: inline-block;
-  color: var(--p-bg-color);
-  font-family: var(--title-font-family); 
-  font-size: var(--menu-font-size);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  position: relative;
-}
 
 small.description {
   font-family: var(--body-font-family);
@@ -438,17 +461,24 @@ small.description {
   }
 }
 
+
 .navbar-icon {
   color: var(--dark-color);
   display: inline-block;
   font-size: var(--h6-font-size);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .navbar-icon:hover {
   color: var(--primary-color);
+  transform: scale(1.3);     /* subtle zoom effect */
 }
+
+
+
+
+
 
 .navbar-toggler {
   border: 0;
@@ -561,11 +591,12 @@ small.description {
   HERO        
 -----------------------------------------*/
 .hero-section {
-background-image: url("../images/japan.jpg");
+background-image: url("../images/japan.png");
   background-size: cover;         /* Make it cover the whole area */
   background-position: center;    /* Center the image */
   background-repeat: no-repeat;   /* Prevent repeating */
   height: 90vh;                  /* Full viewport height */
+
 
   display: flex;
   flex-direction: column;
@@ -1154,31 +1185,116 @@ blockquote {
 
 
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+.button-icon {
+  font-size: var(--h5-font-size); /* adjust icon size */
+  border: none;                   /* remove default border */
+  background-color: transparent;  /* remove background */
+  padding: 0;                     /* remove padding */
+  margin: 5px 0 0 0;                      /* remove margin */
+  cursor: pointer;
+  width: auto;                 /* fit to icon */
+  height: auto;                /* fit to icon */
+  line-height: 1;                 /* remove extra height */
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-.dropdown-menu {
+
+.button-icon:hover {
+  color: var(--primary-color);
+  transform: scale(1.3);     /* subtle zoom effect */
+}
+
+
+
+/* Dropdown menu */
+.dropdown-icon-menu {
   position: absolute;
-  right: 0;
-  top: 100%;
+  right: 0;        /* backward opening */
+  top: 110%;
+  margin: 10px;
+
+  width: 260px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  min-width: 160px;
-
-  display: none; /* hidden by default */
+  display: none;  /* hidden by default */
 }
 
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #333;
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
 }
 
-.dropdown-menu a:hover {
-  background: #f5f5f5;
+.menu-item:hover {
+    background: #f2f2f2;
+}
+
+.menu-item i {
+    font-size: 22px;
+    margin-right: 14px;
+    color: #333;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    margin-top: 2px;
+}
+
+.japanese {
+  font-family: var(--jp-sans);
+  font-size: var(--p-font-size);
+  line-height: 1.6;       /* 1.5–1.8 works well for Japanese */
+  letter-spacing: 0;      /* don't over-tighten; small positive tracking like 0.02em optional */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: break-word; /* allow sensible breaks for long strings */
+  overflow-wrap: anywhere;/* improved wrapping for long tokens/URLs */
+  color: white ;
+}
+
+.main-title {
+    font-family: var(--title-font-family);
+    font-size: 4.5vw; /* Responsive font size based on viewport width */
+    font-weight: normal; /* Makes the font less harsh */
+    line-height: 1.1;
+    margin: 0 0 20px 0; /* Space below the main title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.badge {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    background: #a855f7;    /* purple */
+    color: white;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.logout i,
+.logout .title {
+    color: #e03131; /* red */
+}
+
+.logout:hover {
+    background: #ffe5e5;
 }

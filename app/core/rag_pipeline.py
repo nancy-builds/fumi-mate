@@ -56,7 +56,6 @@ class RAGPipeline:
         )
 
     def get_vectorstore(self, collection_name: str = "submissions_collection"):
-        """Get or create vectorstore."""
         if self.vectorstore is not None:
             return self.vectorstore
 
@@ -81,16 +80,18 @@ class RAGPipeline:
         """
         vs = self.get_vectorstore()
 
+
         # Split text into chunks
         texts = self.text_splitter.create_documents([content])
 
-        # Add submission_id to metadata for each chunk
-        meta = metadata or {}
-        meta['submission_id'] = submission_id
-        metadatas = [meta.copy() for _ in texts]
+        # Add submission_id + your metadata directly to the Document objects
+        for doc in texts:
+            doc.metadata = doc.metadata or {}
+            doc.metadata.update(metadata or {})
+            doc.metadata["submission_id"] = submission_id
 
-        # Add to vectorstore
-        vs.add_documents(documents=texts, metadatas=metadatas)
+        # Save to vectorstore
+        vs.add_documents(texts)
 
         return True
 

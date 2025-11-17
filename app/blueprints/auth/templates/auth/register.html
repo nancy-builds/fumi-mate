@@ -5,7 +5,7 @@
 {% block content %}
 <section class="field-section section-padding mx-auto mt-5 align-items-center justify-content-center">
   <div class="container">
-    <h2 class="fw-bold">Register</h2>
+    <h2 class="fw-bold">register</h2>
 
     <form method="post">
       {{ form.hidden_tag() }}
@@ -36,9 +36,9 @@
         </div>
 
 
-      <div class="d-grid">
-        {{ form.submit(class="btn btn-primary btn-lg rounded-3") }}
-      </div>
+        <div style="text-align: center;">
+          {{ form.submit(class="btn btn-solid", style="width: 200px;") }}
+        </div>
     </form>
 
     {% with messages = get_flashed_messages(with_categories=true) %}

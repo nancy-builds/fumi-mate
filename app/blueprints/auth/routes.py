@@ -53,6 +53,7 @@ def login():
             flash("Invalid username or password. Please try again.", "error")
             return redirect(url_for('auth.login'))
 
+
         # If login successful
         login_user(user)
         flash("Login successful!", "success")

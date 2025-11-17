@@ -84,10 +84,12 @@ def view_tasks():
     tasks = Task.query.all()
     return render_template('student/view_tasks.html', tasks=tasks)
 
-
-
-
-
+# routes.py
+@bp.route('/tasks/<int:task_id>')
+@login_required
+def view_task_details(task_id):
+    task = Task.query.get_or_404(task_id)
+    return render_template('student/view_task_details.html', task=task)
 
 
 # NEW ASS UPDATES
@@ -95,34 +97,21 @@ def view_tasks():
 @bp.route('/tasks/submit_test/<int:task_id>', methods=['POST'])
 @login_required
 def submit_test(task_id):
-    """
-    Expected JSON:
-    {
-        "student_id": "student_123",
-        "assignment_id": "essay_1",
-        "content": "Student's writing...",
-        "jlpt_level": "N3"
-    }
-    """
-    data = request.get_json()
-    student_id = data.get('student_id')
-    assignment_id = data.get('assignment_id')
-    content = data.get('content', '').strip()
-    jlpt_level = data.get('jlpt_level', 'N5')
-
-    if not content:
-        return jsonify({"success": False, "message": "Please write something before submitting."}), 400
-
+    student_id = current_user.id
+    content = request.form.get('content', '').strip()
     task = Task.query.get_or_404(task_id)
-    submission = Submission.query.filter_by(task_id=task.id, student_id=current_user.id).first()
+    submission = Submission.query.filter_by(task_id=task.id, student_id=student_id).first()
 
+    # metadata
     timestamp = datetime.utcnow().isoformat()
+    assignment_id = f"task_{task_id}"
     submission_id = f"{student_id}_{assignment_id}_{timestamp}"
+    jlpt_level = request.form.get('jlpt_level', 'N5')
 
     if not submission:
         submission = Submission(
             task_id=task.id,
-            student_id=current_user.id,
+            student_id=student_id,
             content=content,
             status='submitted',
             created_at=datetime.utcnow(),
@@ -131,60 +120,74 @@ def submit_test(task_id):
         db.session.add(submission)
         db.session.flush()
     else:
+        # Update existing submission
         submission.content = content
         submission.status = 'submitted'
         submission.updated_at = datetime.utcnow()
 
+    # Mark task as done
     task.is_done = True
     db.session.commit()
 
-    # 1. Save to vectorstore
-    pipeline.add_submission(
-        submission_id=submission_id,
-        content=content,
-        metadata={
-            "student_id": student_id,
-            "assignment_id": assignment_id,
-            "type": "student_submission",
-            "timestamp": timestamp
-        }
-    )
+    try:
+        # 1. Save to vectorstore
+        pipeline.add_submission(
+            submission_id=submission_id,
+            content=content,
+            metadata={
+                "student_id": student_id,
+                "assignment_id": assignment_id,
+                "type": "student_submission",
+                "timestamp": timestamp
+            }
+        )
 
-    # 2. Get reference context
-    context = pipeline.get_context_for_submission(
-        query=content[:200],
-        k=3,
-        filter_dict={
-            "assignment_id": assignment_id,
-            "type": "reference"
-        }
-    )
+        # 2. Get reference context
+        context = pipeline.get_context_for_submission(
+            query=content[:200],
+            k=3,
+            filter_dict={
+                "assignment_id": assignment_id,
+                "type": "reference"
+            }
+        )
 
-    # 3. Run feedback agents
-    feedback_results = agents.run_multi_agents(
-        text=content,
-        context=context,
-        jlpt_level=jlpt_level
-    )
+        # 3. Run feedback agents
+        feedback_results = agents.run_multi_agents(
+            text=content,
+            context=context,
+            jlpt_level=jlpt_level
+        )
 
-    # 4. Save AI feedback and score
-    submission.ai_feedback = feedback_results['feedback']['feedback_text']
-    submission.ai_score = feedback_results['overall_score']
-    db.session.commit()
+        # 4. Save AI feedback and score
+        submission.ai_feedback = feedback_results['feedback']['feedback_text']
+        submission.ai_score = feedback_results['overall_score']
+        db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "submission_id": submission.id,
-        "overall_score": feedback_results['overall_score'],
-        "grade": feedback_results['scoring'].get('grade_letter'),
-        "feedback": feedback_results['feedback']['feedback_text'],
-        "action_plan": feedback_results['feedback']['action_plan'],
-        "practice_exercises": feedback_results['feedback']['practice_exercises'],
-        "detailed_analysis": {
-            "grammar": feedback_results['grammar'],
-            "vocabulary": feedback_results['vocabulary'],
-            "structure": feedback_results['structure'],
-            "fluency": feedback_results['fluency'],
-            "content": feedback_results['content']
-        }
-    })
+        # After getting submission
+        if submission and submission.status == 'submitted':
+            flash("You have already submitted this test.", "info")
+            return redirect(url_for('student.view_tasks', task_id=task_id))
+
+        return render_template(
+            "feedback.html",
+            submission=submission,
+            feedback=feedback_results,
+            task=task
+        )
+
+    except Exception as e:
+        # Rollback on error and show error message
+        db.session.rollback()
+        flash(f"An error occurred while processing your submission: {str(e)}", "danger")
+        return redirect(url_for('student.view_tasks', task_id=task_id))
+
+
+@bp.route("/api/feedback")
+@login_required
+def get_feedback():
+    submission_id = request.args.get("submission_id")
+    # load from DB
+    submission = Submission.query.get(submission_id)
+
+    return jsonify(submission.json_data)

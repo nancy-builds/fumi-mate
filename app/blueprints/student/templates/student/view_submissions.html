@@ -3,7 +3,7 @@
 
 {% block content %}
 <section class="section-padding mt-5 container">
-  <h2 class="mb-4">My Submissions</h2>
+  <h2 class="mb-4">my submissions</h2>
   {% if submissions %}
   <div class="table-responsive shadow-sm rounded-3">
       <table class="table table-hover table-bordered align-middle mb-0 overflow-hidden">
@@ -37,7 +37,7 @@
   </div>
   {% else %}
     <div class="text-center">
-      <img src="{{ url_for('static', filename='images/angry-levi.png') }}"
+      <img src="{{ url_for('static', filename='images/crying_girl.png') }}"
            alt="No tasks" class="mb-3" style="width: 200px;">
       <p class="text-muted mb-0">You haven’t submitted any writing tests yet.</p>
     </div>  {% endif %}

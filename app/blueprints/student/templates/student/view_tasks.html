@@ -3,44 +3,74 @@
 
 {% block content %}
 <section class="container section-padding mx-auto mt-5">
+
   <h2 class="mb-4">Your Tasks</h2>
 
-  {% if tasks %}
-  <div class="table-responsive shadow-sm rounded-3">
-    <table class="table table-hover table-bordered align-middle mb-0 overflow-hidden">
-      <thead class="table-light border-bottom border-2 border-primary-subtle">
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Due Date</th>
-          <th>Created</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for task in tasks %}
-        <tr>
-          <td class="fw-semibold">{{ task.title }}</td>
-          <td>{{ task.description or '-' }}</td>
-          <td>{{ task.due_date.strftime('%Y-%m-%d') if task.due_date else '-' }}</td>
-          <td>{{ task.created_at.strftime('%Y-%m-%d') if task.created_at else '-' }}</td>
-          <td>
-              {% if not task.is_done %}
-              <a href="{{ url_for('student.writing_test', task_id=task.id) }}" class="btn btn-primary">Take test</a>
-              {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <!-- Flash messages -->
+  <div class="container mt-3">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
   </div>
+
+  {% if tasks %}
+  <div class="row g-4 mt-2">
+
+      {% for task in tasks %}
+      <div class="col-3 col-md-6 col-lg-3">
+          {% if task.is_done %}
+              <div class="custom-block bg-danger shadow-md border border-dark p-3">
+                  <h5 class="card-title fw-bold">{{ task.title }}</h5>
+                  <p class="text-muted small mb-2">{{ task.description or '-' }}</p>
+                  <div class="mb-2">
+                      <span class="fw-semibold">Due:</span>
+                      <span>{{ task.due_date.strftime('%Y-%m-%d') if task.due_date else '-' }}</span>
+                  </div>
+                  <div class="mb-3">
+                      <span class="fw-semibold">Created:</span>
+                      <span>{{ task.created_at.strftime('%Y-%m-%d') if task.created_at else '-' }}</span>
+                  </div>
+              </div>
+          {% else %}
+          <div class="custom-block bg-white shadow-md border border-dark p-3">
+              <h5 class="card-title fw-bold">{{ task.title }}</h5>
+                  <p class="text-muted small mb-2">{{ task.description or '-' }}</p>
+                  <div class="mb-2">
+                      <span class="fw-semibold">Due:</span>
+                      <span>{{ task.due_date.strftime('%Y-%m-%d') if task.due_date else '-' }}</span>
+                  </div>
+                  <div class="mb-3">
+                      <span class="fw-semibold">Created:</span>
+                      <span>{{ task.created_at.strftime('%Y-%m-%d') if task.created_at else '-' }}</span>
+                  </div>
+              <a href="{{ url_for('student.writing_test', task_id=task.id) }}"
+                      class="btn btn-solid px-4">
+                      Take Test
+                  </a>
+              </div>
+
+
+          {% endif %}
+
+
+      </div>
+      {% endfor %}
+  </div>
+
   {% else %}
-    <div class="text-center">
-      <img src="{{ url_for('static', filename='images/angry-levi.png') }}"
+    <div class="text-center mt-5">
+      <img src="{{ url_for('static', filename='images/crying_girl.png') }}"
            alt="No tasks" class="mb-3" style="width: 200px;">
       <p class="text-muted mb-0">No tasks available yet.</p>
     </div>
-
   {% endif %}
+
 </section>
 {% endblock %}

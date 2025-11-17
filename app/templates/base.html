@@ -16,7 +16,7 @@
         <link href="{{ url_for('static', filename='css/templatemo-topic-listing.css') }}" rel="stylesheet">
         <link href="{{ url_for('teacher.static', filename='teacher.css') }}" rel="stylesheet">
         <link href="{{ url_for('student.static', filename='student.css') }}" rel="stylesheet">
-
+        <link rel="icon" href="{{ url_for('static', filename='images/sake.png') }}" type="image/png">
     </head>
 
     <body id="top">
@@ -128,8 +128,7 @@
                                 </ul>
                             {% endif %}
 
-                        {% else %}
-
+                            {% else %}
                                 <ul class="navbar-nav ms-lg-5 me-lg-auto d-flex flex-row gap-3">
                                     <li class="nav-item">
                                       <a href="{{ url_for('auth.login') }}" class="nav-link click-scroll">Login</a>
@@ -138,48 +137,75 @@
                                       <a href="{{ url_for('auth.register') }}" class="nav-link click-scroll">Sign Up</a>
                                     </li>
                               </ul>
-
                         {% endif %}
-                            <!-- User not authenticated -->
+
+                        {% if current_user.is_authenticated %}
                                 <ul class="navbar-nav ms-auto gap-5 d-flex flex-row">
                                     <li class="nav-item">
                                       <a class="navbar-icon bi-cart3" href="#"></a>
                                     </li>
 
                                     <li class="nav-item">
-                                      <span class="navbar-icon  bi-bell"></span>
+                                      <span class="navbar-icon  bi-suit-heart"></span>
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <span class="navbar-icon profileBtn bi-person"></span>
-                                          <div class="dropdown-menu" id="dropdownMenu">
-                                            <a href="#">Settings</a>
-                                            <a href="#">My Profile</a>
-                                            <a href="#">Logout</a>
-                                          </div>
+                                      <button id="profileBtn" class="button-icon bi-person"></button>
+                                      <div class="dropdown-icon-menu" id="dropdownMenu">
+                                            <div class="menu-item">
+                                                <i class="bi bi-person"></i>
+                                                <div class="text">
+                                                    <span class="title">Profile</span>
+                                                    <span class="">View your profile</span>
+                                                </div>
+                                            </div>
 
-                                  </li>
+                                            <div class="menu-item">
+                                                <i class="bi bi-envelope"></i>
+                                                <div class="text">
+                                                    <span class="title">Messages</span>
+                                                    <span class="">3 unread messages</span>
+                                                </div>
+                                                <span class="badge">3</span>
+                                            </div>
 
+                                            <div class="menu-item">
+                                                <i class="bi bi-bell"></i>
+                                                <div class="text">
+                                                    <span class="title">Notifications</span>
+                                                    <span class="">Manage notifications</span>
+                                                </div>
+                                            </div>
 
-                                    <li class="dropdown">
-                                      <button
-                                        class="btn btn-light dropdown-toggle"
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                      >
-                                        Profile
-                                      </button>
+                                            <div class="menu-item">
+                                                <i class="bi bi-gear"></i>
+                                                <div class="text">
+                                                    <span class="title">Settings</span>
+                                                    <span class="">Account preferences</span>
+                                                </div>
+                                            </div>
 
-                                      <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                                        <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
-                                      </ul>
+                                            <div class="menu-item">
+                                                <i class="bi bi-question-circle"></i>
+                                                <div class="text">
+                                                    <span class="title">Help & Support</span>
+                                                    <span class="">Get assistance</span>
+                                                </div>
+                                            </div>
+
+                                            <a class="menu-item logout" href="{{ url_for('auth.logout')}}" >
+                                                <i class="bi bi-box-arrow-right"></i>
+                                                <div class="text">
+                                                    <span class="title">Logout</span>
+                                                    <span class="">Sign out of your account</span>
+                                                </div>
+                                            </a>
+                                        </div>
+
                                     </li>
 
                               </ul>
+                        {% endif %}
                     </div>
                 </div>
                 </div>
@@ -190,79 +216,79 @@
         </main>
 
 
-    <footer class="section-padding py-5">
+        <footer class="section-padding py-5">
 
-            <div class="footer-content-top container">
+                <div class="footer-content-top container">
 
-                <div class="footer-left-promo">
-                    <a class="navbar-brand" href="index.html">
-                        <i class="bi-mortarboard-fill"></i>
-                        <span>日本語</span>
-                    </a>
-                    <p class="footer-promo-text">Clear your desk. Tie your hair up. Grab a coffee, and just start.</p>
+                    <div class="footer-left-promo">
+                        <a class="navbar-brand" href="index.html">
+                            <i class="bi-mortarboard-fill"></i>
+                            <span>日本語</span>
+                        </a>
+                        <p class="footer-promo-text">Clear your desk. Tie your hair up. Grab a coffee, and just start.</p>
 
-                    <div class="footer-social">
-                        <a href="#"><i class="bi-facebook"></i></a>
-                        <a href="#"><i class="bi-instagram"></i></a>
-                        <a href="#"><i class="bi-tiktok"></i></a>
-                        <a href="#"><i class="bi-linkedin"></i></a>
-                        <a href="https://github.com/nancy-builds"><i class="bi-github"></i></a>
+                        <div class="footer-social">
+                            <a href="#"><i class="bi-facebook"></i></a>
+                            <a href="#"><i class="bi-instagram"></i></a>
+                            <a href="#"><i class="bi-tiktok"></i></a>
+                            <a href="#"><i class="bi-linkedin"></i></a>
+                            <a href="https://github.com/nancy-builds"><i class="bi-github"></i></a>
+                        </div>
                     </div>
+
+                    <div class=" footer-middle-image">
+                        <img src="{{ url_for('static', filename='images/footer_study_girl.png') }}"
+                             alt="Study Girl"
+                             class="footer-image">
+                    </div>
+
+                    <div class=" footer-right-links">
+                        <div class="footer-link-group">
+                            <h4 class="footer-link-title">Practice</h4>
+                            <ul>
+                                <li><a href="#">Cold brew</a></li>
+                                <li><a href="#">Matcha</a></li>
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Bundles</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-link-group">
+                            <h4 class="footer-link-title">日本語</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-link-group">
+                            <h4 class="footer-link-title">日本語</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-link-group">
+                            <h4 class="footer-link-title">日本語</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class=" footer-middle-image">
-                    <img src="{{ url_for('static', filename='images/footer_study_girl.png') }}"
-                         alt="Study Girl"
-                         class="footer-image">
+                <hr class="footer-divider">
+
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <span>&copy; 2025 日本語 Inc. All Rights Reserved.</span>
                 </div>
 
-                <div class=" footer-right-links">
-                    <div class="footer-link-group">
-                        <h4 class="footer-link-title">Practice</h4>
-                        <ul>
-                            <li><a href="#">Cold brew</a></li>
-                            <li><a href="#">Matcha</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Bundles</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-link-group">
-                        <h4 class="footer-link-title">日本語</h4>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-link-group">
-                        <h4 class="footer-link-title">日本語</h4>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-link-group">
-                        <h4 class="footer-link-title">日本語</h4>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <hr class="footer-divider">
-
-            <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Conditions</a>
-                <span>&copy; 2025 日本語 Inc. All Rights Reserved.</span>
-            </div>
-
-        </footer>
+            </footer>
 
 
         <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
@@ -272,6 +298,5 @@
         <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
         <script src="{{ url_for('teacher.static', filename='teacher.js') }}"></script>
         <script src="{{ url_for('student.static', filename='student.js') }}"></script>
-
     </body>
 </html>

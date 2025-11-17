@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from datetime import datetime
 from app.extensions import db
-from app.models import Task, Question, Teacher
+from app.models import Task, Question, Teacher, Submission, Student, User
 from . import bp
 
 # --- Create a task (with multiple questions) ---
@@ -76,7 +76,7 @@ def create_task():
     return render_template('teacher/create_task.html')
 
 # --- View all tasks ---
-@bp.route('/view_tasks')
+@bp.route('/tasks')
 @login_required
 def view_tasks():
     if current_user.role != 'teacher':
@@ -85,6 +85,7 @@ def view_tasks():
 
     tasks = Task.query.filter_by(created_by=current_user.id).all()
     return render_template('teacher/view_tasks.html', tasks=tasks)
+
 
 # --- View single task detail (with questions) ---
 @bp.route('/task/<int:task_id>')
@@ -95,17 +96,13 @@ def view_task_detail(task_id):
         flash('Access denied. Teachers only.', 'danger')
         return redirect(url_for('main.index'))
 
-    # Lấy thông tin teacher hiện tại (nếu cần)
     teacher = Teacher.query.get(current_user.id)
-
-    # Lấy task
     task = Task.query.get_or_404(task_id)
 
     return render_template('teacher/view_task_detail.html',
                            teacher=teacher,
                            task=task,
                            questions=task.questions)
-
 
 # --- Edit task ---
 @bp.route('/edit_task/<int:task_id>', methods=['GET', 'POST'])
@@ -146,3 +143,29 @@ def delete_task(task_id):
     db.session.commit()
     flash('Task deleted successfully.', 'success')
     return redirect(url_for('teacher.view_tasks'))
+
+
+
+# --- SUBMISSION ---
+@bp.route('/task/<int:task_id>/submissions')
+@login_required
+def view_submissions(task_id):
+    if current_user.role != 'teacher':
+        flash('Access denied. Teachers only.', 'danger')
+        return redirect(url_for('main.index'))
+
+    student = Student.query.get(current_user.id)
+    task = Task.query.get_or_404(task_id)
+    if task.created_by != current_user.id:
+        flash('Access denied. You can only view submissions for your own tasks.', 'danger')
+        return redirect(url_for('teacher.view_tasks'))
+
+    # Get all submissions for this task with student information
+    submissions = Submission.query.filter_by(task_id=task_id) \
+        .join(User, Submission.student_id == current_user.id) \
+        .order_by(Submission.created_at.desc()) \
+        .all()
+
+    return render_template('teacher/view_submissions.html',
+                           task=task,
+                           submissions=submissions)

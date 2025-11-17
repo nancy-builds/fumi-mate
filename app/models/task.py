@@ -13,7 +13,7 @@ class Task(db.Model):
     due_date = db.Column(db.DateTime)
     created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    is_done = db.Column(db.Boolean, default=False)
+    is_done = db.Column(db.Boolean, default=False, nullable=False)
 
     questions = db.relationship('Question', backref='task', lazy=True, cascade="all, delete-orphan")
 
