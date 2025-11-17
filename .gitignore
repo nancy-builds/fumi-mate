@@ -1,9 +1,38 @@
-# Python virtual environments
+# Thư mục môi trường ảo
+# Đảm bảo các thư mục venv/môi trường ảo không bị commit
 .venv/
 venv/
-env/
-
-# Python cache
-__pycache__/
 *.pyc
 
+# File cache của Python
+__pycache__/
+
+# File cấu hình IDE (Ví dụ: PyCharm)
+# Thư mục .idea chứa cài đặt dự án cục bộ của IDE
+.idea/
+
+# File cấu hình riêng tư hoặc môi trường
+# Thường chứa các khóa API hoặc thông tin nhạy cảm
+.env
+# Hoặc cụ thể hơn nếu bạn dùng file .env cho biến môi trường
+.env.local
+
+# Database cục bộ
+# File SQLite được tạo ra bởi Chroma hoặc các ứng dụng khác
+chroma.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# Thư mục chứa các file di trú đã được tạo (Alembic)
+# Chúng cần được commit, nhưng chúng ta nên bỏ qua các file tạm/log
+# Thư mục 'migrations/versions/' cần được giữ lại để theo dõi lịch sử
+# Nếu Alembic tạo file tạm nào, hãy thêm vào đây
+
+# Log files, temporary files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
